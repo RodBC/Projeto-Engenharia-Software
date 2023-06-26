@@ -1,0 +1,140 @@
+
+
+.nav_container{
+    background-color: black;
+    width: 100vw;
+}
+
+
+
+
+.nav_list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.nav_list li{
+    letter-spacing: 0.2rem;
+    
+}
+
+.item_list{
+    color: #ffffff;
+    
+    text-decoration: none;
+    font-size: 1.6rem;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    transition: 0.5s;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.item_list::after{
+    content: " ";
+    width: 0%;
+    height: 0.13rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+    background-color: #ffffff;
+    pointer-events: none;
+} 
+
+.item_list:hover::after{
+    width: 100%;
+}
+
+.item_list:hover{
+    text-shadow: 0 0 5px #00ff00, 0 0 20px #00ff00, 0 0 10px #00ff00;
+
+}
+
+/* -----------------Fim da estilização do menu---------------- */
+
+
+
+/* ---------------Regulando a página para dispositivos com menos ou igual a 950px------------- */
+
+
+@media (max-width: 950px){
+    @viewport {
+        max-zoom: 1;
+      }
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .nav_list {
+        position: absolute;
+        top: 10vh;
+        width: 100vw;
+        right: 0;
+        height: 90vh;
+        background-color: #0e0e0e;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%);
+        transition: right 0.4s ease-in ;
+        display: none;
+    }
+
+    .nav_container{
+        box-sizing: border-box;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        justify-content: flex-end;
+    }
+
+    .logo_name{
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav_list li{
+        margin-left: 0;
+        opacity: 0;
+    }
+
+    .mobile_menu{
+        display: block; 
+    }
+
+    .ativar {
+        transform: translateX(0);
+    }
+
+    .linha1 {
+        transform: rotate(-45deg) translate(-8px, 8px);
+    }
+
+    .linha2{
+        opacity: 0;
+    }
+
+    .linha3 {
+        transform: rotate(45deg) translate(-5px, -7px);
+    }
+
+    @keyframes stylelink{
+
+        from{
+            opacity: 0;
+            transform: translateX(5rem);
+        }
+
+        to{
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+} 
+/* ------------------------------------------------------------------ */
+
+
