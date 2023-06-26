@@ -9,14 +9,15 @@ export function App() {
     <>
       <img src={reactLogo} className="logo react" alt="React logo" />
 
-      <h1>Projeto Cultural</h1>
+      <h1>Apoie uma iniciativa em:</h1>
 
       <div className="card">
-      <h2>Quero visitar um:</h2>
-        <button onClick={() => null}><a>museu</a></button>
-        <button onClick={() => null}><a>tatro</a></button>
-        <button onClick={() => null}><a>café</a></button>
-        <button onClick={() => null}><a>jardim botanico</a></button>
+        <button onClick={() => null}><a>Boa Vista</a></button>
+        <button onClick={() => null}><a>Boa Viagem</a></button>
+        <button onClick={() => null}><a>Ilha do Leite</a></button>
+        <button onClick={() => null}><a>Joana Bezerra</a></button>
+        <button onClick={() => null}><a>Tancredo Neves</a></button>
+        <button onClick={() => null}><a>Madalena</a></button>
 
       </div>
     </>
