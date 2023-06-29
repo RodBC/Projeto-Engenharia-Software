@@ -31,7 +31,7 @@ export const Card = () => {
             <h2>Iniciativa</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum ipsum, aut impedit nisi facere nesciunt fugiat at ipsam molestiae velit exercitationem porro, nulla quae repellendus quis! Id unde ipsa voluptate?</p>
             <div className='button'>
-              <a href="">Saiba amais</a>
+              <a href="https://www.youtube.com/watch?v=HHOn8u-c2wk&list=LL&index=12&t=593s" id="Texto_Do_Butão">Saiba amais</a>
             </div>
           </div>
           

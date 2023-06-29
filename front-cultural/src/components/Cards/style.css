@@ -53,6 +53,7 @@
 }
 
 /* div da IMAGEM do CARD */
+
 .imagem img{
     width: 300.333px;
     height: 168.848px;
@@ -60,6 +61,15 @@
 
 .imagem{
     height:168.848px ;
+}
+/* ---------------------- */
+
+
+/* texto do "saiba mais dos cards */
+
+#Texto_Do_Butão{
+    text-decoration: none;
+    color: white;
 }
 /* ---------------------- */
   
