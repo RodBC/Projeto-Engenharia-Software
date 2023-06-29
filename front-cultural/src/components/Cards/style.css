@@ -13,5 +13,53 @@
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
   
+.card{
+    width: 300.333px;
+    height: 457.333px;
+}
 
+.card-content{
+    padding: 1em;
+    text-align: left;
+    background-color: white;
+}
+
+.card-content p{
+    margin-top: 1em;
+    
+}
+
+.button{
+    margin-top: 1em;
+    padding: 0.6em 1em 0.8em 1.5em;
+    width: 97px;
+    height: 21px;
+
+    border-radius: 4px;
+    background-color: #852FF4;
+
+    align-items: center;
+}
+
+.card-content a{
+    color: #fff;
+    font-weight: 700;
+    color: none;
+    text-decoration: none;
+}
+
+.card-content a:hover{
+    color: initial;
+}
+
+/* div da IMAGEM do CARD */
+.imagem img{
+    width: 300.333px;
+    height: 168.848px;
+}
+
+.imagem{
+    height:168.848px ;
+}
+/* ---------------------- */
   

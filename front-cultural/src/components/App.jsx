@@ -7,7 +7,7 @@ export function App() {
 
   return (
     <>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Card />
     </>
   );
