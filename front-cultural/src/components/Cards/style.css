@@ -22,23 +22,41 @@
     padding: 1em;
     text-align: left;
     background-color: white;
+    position: relative;
 }
 
 .card-content p{
-    margin-top: 1em;
-    
+    margin-top: 1em; 
 }
 
-.button{
+.buttons{
     margin-top: 1em;
     padding: 0.6em 1em 0.8em 1.5em;
     width: 97px;
     height: 21px;
-
     border-radius: 4px;
     background-color: #852FF4;
-
     align-items: center;
+}
+
+.buttons img{
+    width: 20px;
+    height: 20px;
+    left: 180px;
+    position: relative;
+    padding: 8px;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+.buttons .heart_button{
+    width: 22px;
+    height: 22px;
+    left: 180px;
+    position: relative;
+    padding: 8px;
+    bottom: 30px;
+    cursor: pointer;
 }
 
 .card-content a{
