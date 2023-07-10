@@ -8,19 +8,6 @@ export const Card = () => {
 
     return (
     <>
-      <img src={reactLogo} className="logo react" alt="React logo" />
-        
-      <h1>Apoie uma iniciativa em:</h1>
-
-      <div className="cities">
-        <button onClick={() => setCount(count+1)}><a>{count}</a></button>
-        <button onClick={() => null}><a>Boa Viagem</a></button>
-        <button onClick={() => null}><a>Ilha do Leite</a></button>
-        <button onClick={() => null}><a>Joana Bezerra</a></button>
-        <button onClick={() => null}><a>Tancredo Neves</a></button>
-        <button onClick={() => null}><a>Madalena</a></button>
-      </div>
-
       <div className="card-space">
         <div className='card'>
 
