@@ -1,0 +1,8 @@
+{
+    "$schema": "hhtps://turborepo.org/schema.json",
+    "pipeline": {
+        "dev": {
+            "cache": false
+        }
+    }
+}
