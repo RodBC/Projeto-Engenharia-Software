@@ -1,11 +1,11 @@
 import { Card } from "./components/Cards/card"
-import { NavBar } from "./components/Navbar/navbar"
+// import { NavBar } from "./components/Navbar/navbar"
 
 export const App = () => {
 
   return (
     <>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Card/>
     </>
   )
