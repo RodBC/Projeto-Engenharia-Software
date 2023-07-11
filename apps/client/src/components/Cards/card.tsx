@@ -6,37 +6,46 @@ import share from '../../assets/share.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-
-export const Card = () => {
+interface CardProps {
+    name: string;
+    description: number;
+    link: string;
+}
+export const Card = (dataArray: CardProps[]) => {
 
     const [curtida, setCurtida] = useState(false);
     const muda_curtida = ()=>{
       setCurtida(!curtida)
     }
     
-    return (
-    <>
-      <div className="card-space">
-        <div className='card'>
+    dataArray.map(data => {
 
-          <div className='imagem'>
-            <img src={montanha} alt="" />
-          </div>
+      const {name, description, link} = data
+      return (
+      <>
+        <div className="card-space">
+          <div className='card'>
 
-          <div className='card-content'>
-            <h2>Iniciativa</h2>
+            <div className='imagem'>
+              <img src={montanha} alt="" />
+            </div>
 
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum ipsum, aut impedit nisi facere nesciunt fugiat at ipsam molestiae velit exercitationem porro, nulla quae repellendus quis! Id unde ipsa voluptate?</p>
+            <div className='card-content'>
+              <h2>{name}</h2>
 
-            <div className='buttons'>
-              <a href="https://www.youtube.com/watch?v=HHOn8u-c2wk&list=LL&index=12&t=593s" id="Texto_Do_Butão">Saiba amais</a>
-              <FontAwesomeIcon icon={faHeart} className="heart_button"  color={curtida? 'red':'grey'} onClick={()=>muda_curtida()}/>
-              <img src={share} id="share_button"/>
+              <p>{description}</p>
+
+              <div className='buttons'>
+                <a href={link} id="Texto_Do_Butão">Saiba amais</a>
+                <FontAwesomeIcon icon={faHeart} className="heart_button"  color={curtida? 'red':'grey'} onClick={()=>muda_curtida()}/>
+                <img src={share} id="share_button"/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-    </>
-)
+      </>
+  )
+})
+
 }
