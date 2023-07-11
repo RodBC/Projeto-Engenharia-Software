@@ -8,7 +8,7 @@ export const App = () => {
   return (
     <>
       {/* <NavBar/> */}
-      <Card />
+      <Card name='' description='' link=''/>
     </>
   )
 }
