@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import * as bcrypt from 'bcrypt';
 
 @Entity()
 export class User {
@@ -12,10 +13,12 @@ export class User {
     email: string;
 
     @Column()
+    password: string;
+
+    @Column()
     array_of_groups: string;
 
-    constructor(user?: Partial<User>) {
-        // Preenche os valores, se fornecidos 
-        Object.assign(this, user);
-    }
+    async validatePassword(password: string): Promise<boolean> {
+        return bcrypt.compare(password, this.password);
+      }
 }
