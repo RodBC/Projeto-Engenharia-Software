@@ -121,7 +121,8 @@ input::placeholder{
 	header .responsive_nav {
 		transform: translateY(100vh);
         visibility: visible;
-        position: fixed;
+        /* position: fixed; */
+		position: absolute;
 	}
 
 	nav .nav-close-btn {

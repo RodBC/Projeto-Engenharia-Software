@@ -3,15 +3,26 @@
     width: 100vw;
   } */
 
-.space_for_cards {
-    min-height: 100vh; /* Set a minimum height of 100vh (initial viewport height) */
-    width: 100vw; /* 100% of viewport width */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 20px;
+  .space_for_cards {
+    min-height: 100vh;
+    width: 100vw;
+    align-items: center;
 
-    justify-content: center;
-}
+  }
+
+  #grid_div{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    grid-gap: 180px;
+    width: 80vw;
+    align-items: center;
+  }
+  
+  /* Center the cards within the grid cells */
+  .space_for_cards > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 .title1{
     width: 100vw;
@@ -21,3 +32,4 @@
 .locations_buttons{
     width: 100vw;
 }
+
