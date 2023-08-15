@@ -1,0 +1,21 @@
+/* .space_for_cards {
+    height: calc(100vh - 80px);
+    width: 100vw;
+  } */
+
+.space_for_cards {
+    min-height: 100vh; /* Set a minimum height of 100vh (initial viewport height) */
+    width: 100vw; /* 100% of viewport width */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.title1{
+    width: 100vw;
+    min-height: 10vh;
+}
+  
+.locations_buttons{
+    width: 100vw;
+}
