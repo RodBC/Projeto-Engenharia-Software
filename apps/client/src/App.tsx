@@ -10,7 +10,7 @@ export const App = () => {
       <div className="title1">
         <h1>Placeholder for title</h1>
       </div>
-      
+
       <div className="locations_buttons">
         <h1>Placeholder for locations</h1>
       </div>
@@ -19,7 +19,6 @@ export const App = () => {
         <Card/>
         <Card/>
         <Card/>
-
       </div>
     </>
   )
