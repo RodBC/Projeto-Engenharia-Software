@@ -1,17 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './user.entity';
-import { Public } from 'src/auth/public.decorator';
+import { AuthGuard } from '@nestjs/passport';
 // import { UserInterface } from "./user.model";
 
 @Controller('user')
@@ -23,21 +12,20 @@ export class UsersController {
   //   return this.usersService.create(createUserDto);
   // }
 
-  @Public()
-  @Get()
+  @Get('/')
+  @UseGuards(AuthGuard('jwt'))
+  async findOne(@Query('id') id: string) {
+    if (!id) {
+      return;
+    }
+    return this.usersService.findOne(id);
+  }
+
+  @Get('/all')
+  @UseGuards(AuthGuard('jwt'))
   async find() {
     return this.usersService.find();
   }
-
-  @Public()
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
-  }
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {

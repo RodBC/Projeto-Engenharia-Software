@@ -10,7 +10,7 @@ export class UsersService {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const { name, email, password, array_of_groups } = createUserDto;
@@ -21,28 +21,28 @@ export class UsersService {
     user.email = email;
     user.name = name;
     user.password = await bcrypt.hash(password, salt);
-    user.array_of_groups = array_of_groups
+    user.array_of_groups = array_of_groups;
 
     return this.userRepository.save(user);
   }
 
   async find(): Promise<User[]> {
-    return this.userRepository.find()
+    return this.userRepository.find();
   }
 
   async findOne(id: string): Promise<User> {
     return this.userRepository.findOne({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
   }
-  
+
   async findByEmail(email: string): Promise<User> {
     return this.userRepository.findOne({
       where: {
-        email: email
-      }
-    })
+        email: email,
+      },
+    });
   }
 }
