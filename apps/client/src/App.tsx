@@ -17,9 +17,6 @@ export const App = () => {
       <div className="space_for_cards">
         <div id="grid_div">
           <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
         </div>
       </div>
     </>

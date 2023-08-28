@@ -22,7 +22,7 @@ export function Navbar() {
 					<FaSearch/>
 				</div>
 			</div>
-			<nav ref={navRef}>
+			<nav ref={navRef} style={{'zIndex': '99999'}}>
 				<a href="/#">Início</a>
 				<a href="/#">Sobre</a>
 				<a href="/#">Contatos</a>

@@ -37,8 +37,8 @@
   
 
 .card{
-    /* width: 300.333px;
-    height: 100vh; */
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* .card_space {
@@ -54,6 +54,7 @@
     background-color: rgb(255, 255, 255);
     color: black;
     position: relative;
+   
 }
 
 .card-content p{
