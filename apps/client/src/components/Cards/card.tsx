@@ -17,7 +17,7 @@ const cardsData: CardData[] = [
   },
   {
     iniciativa: "Curado saudável",
-    descricao: "ajude a curar o quejio",
+    descricao: "Ajude a curar o quejio",
   },
   {
     iniciativa: "UFPE LGBT",
