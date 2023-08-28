@@ -1,5 +1,6 @@
 import { Card } from "./components/Cards/card"
 import {Navbar} from "./components/Navbar/navbar.jsx"
+import {Locations} from "./components/LocationsCarrousel/Locations"
 import './app_style.css'
 export const App = () => {
 
@@ -11,7 +12,7 @@ export const App = () => {
       </div>
       
       <div className="locations_buttons">
-        <h1>Placeholder for locations</h1>
+        <Locations/>
       </div>
       
       <div className="space_for_cards">
