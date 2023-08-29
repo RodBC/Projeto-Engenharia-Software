@@ -23,9 +23,12 @@ export function Navbar() {
 				</div>
 			</div>
 			<nav ref={navRef} style={{'zIndex': '99999'}}>
-				<a href="/#">Início</a>
-				<a href="/#">Sobre</a>
-				<a href="/#">Contatos</a>
+
+				<a href="/inicio">Início</a>
+
+				<a href="/sobre">Sobre</a>
+
+				<a href="/contatos">Contatos</a>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
