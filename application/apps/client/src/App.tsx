@@ -1,6 +1,8 @@
 import { Card } from "./components/Cards/card"
-import {Navbar} from "./components/Navbar/navbar.jsx"
+import {Navbar} from "./components/Navbar/navbar"
+import { Footer } from "./components/Footer/Footer"
 import './app_style.css'
+
 export const App = () => {
 
   return (
@@ -19,6 +21,7 @@ export const App = () => {
           <Card/>
         </div>
       </div>
+      <Footer />
     </>
   )
 }
