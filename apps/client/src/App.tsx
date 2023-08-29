@@ -1,10 +1,9 @@
-import { Card } from "./components/Cards/card"
 import {Navbar} from "./components/Navbar/navbar.jsx"
-import {Locations} from "./components/LocationsCarrousel/Locations"
-import './app_style.css'
 import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
+import { Footer } from "./components/Footer/Footer.js"
+import './app_style.css'
 
 export const App = () => {
 
@@ -24,6 +23,7 @@ export const App = () => {
 
           {/* Página de Iniciativas */}
       </Routes>
+      <Footer />
       
     </>
   )

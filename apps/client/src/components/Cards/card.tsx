@@ -51,7 +51,7 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
   };
 
   return (
-    <div className='card'>
+    <div className='Card'>
       <div className='imagem'>
         <img src={montanha} alt="" />
       </div>
@@ -60,7 +60,7 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
         <p>{data.descricao}</p>
 
         <div className='buttons'>
-          <a href="https://www.youtube.com/watch?v=HHOn8u-c2wk&list=LL&index=12&t=593s"  id="Texto_Do_Butão">Saiba mais</a>
+          <a href="https://www.youtube.com/watch?v=HHOn8u-c2wk&list=LL&index=12&t=593s" >Saiba mais</a>
           <img src={share} id="share_button"/>
           <FontAwesomeIcon icon={faHeart} className="heart_button" color={curtida ? 'red' : 'grey'} onClick={muda_curtida} />
         </div>
