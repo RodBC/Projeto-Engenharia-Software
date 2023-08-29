@@ -1,24 +1,30 @@
 import { Card } from "./components/Cards/card"
 import {Navbar} from "./components/Navbar/navbar.jsx"
+import {Locations} from "./components/LocationsCarrousel/Locations"
 import './app_style.css'
+import {Routes, Route} from 'react-router-dom'
+import { HomePage } from "./components/HomePage/HomePage.js"
+import { AboutPage } from "./components/AboutPage/AboutPage.js"
+
 export const App = () => {
 
   return (
     <>
       <Navbar/>
-      <div className="title1">
-        <h1>Placeholder for title</h1>
-      </div>
+      <Routes>
+          {/* Página de Início */}
+          <Route path="/inicio" element={<HomePage/>}/>
+
+          {/* Página de Sobre */}
+          <Route path="/sobre" element={<AboutPage/>}/>
+
+          {/* Página de Contatos */}
+
+          {/* Página de Usuário */}
+
+          {/* Página de Iniciativas */}
+      </Routes>
       
-      <div className="locations_buttons">
-        <h1>Placeholder for locations</h1>
-      </div>
-      
-      <div className="space_for_cards">
-        <div id="grid_div">
-          <Card/>
-        </div>
-      </div>
     </>
   )
 }
