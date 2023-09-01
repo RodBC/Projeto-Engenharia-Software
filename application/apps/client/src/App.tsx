@@ -11,7 +11,7 @@ import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 export const App = () => {
 
   return (
-    <>
+    <div className="app_background_div">
       {/* <Navbar/> */}
       <Routes>
           {/* Página de Início */}
@@ -34,7 +34,7 @@ export const App = () => {
           <Route path="/login" element={<LoginPage/>}/>
 
       </Routes>
-    </>
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import "./AboutPage.css";
 import {Navbar} from "../Navbar/navbar.jsx"
+import { Footer } from "../Footer/Footer.js";
 
 
 export const AboutPage = () => {
@@ -22,6 +23,7 @@ export const AboutPage = () => {
                 </div>
 
             </div>
+            <Footer/>
         </>
     )
 }

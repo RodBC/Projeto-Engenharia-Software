@@ -31,7 +31,7 @@ const cardsData: CardData[] = [
   },
   {
     iniciativa: "Chassina amanhã",
-    descricao: "UFPE",
+    descricao: "Ilha do Tiro",
   },
 ];
 
@@ -61,7 +61,7 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
   return (
 
         // style={{ width: '100%'}}
-        <Card style={{ width: '100%'}}>
+        <Card style={{ width: '100%', height:'100%'}}>
           <Card.Img variant="top" src={montanha} />
           <Card.Body>
             <Card.Title>{data.iniciativa}</Card.Title>

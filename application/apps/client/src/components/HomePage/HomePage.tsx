@@ -2,6 +2,7 @@ import { Card } from "../Cards/card"
 // import {Navbar} from "../Navbar/navbar.jsx"
 import {Locations} from "../LocationsCarrousel/Locations"
 import './HomePage.css'
+import { Footer } from "../Footer/Footer.js"
 
 import {Navbar} from "../Navbar/navbar.jsx"
 import {TestCard} from "../TestCard/TestCard"
@@ -25,6 +26,7 @@ export const HomePage = () => {
                 <TestCard/>
             </div>
         </div>
+        <Footer/>
     </>
     )
 };
