@@ -1,10 +1,12 @@
 import React from "react";
 import "./AboutPage.css";
+import {Navbar} from "../Navbar/navbar.jsx"
 
 
 export const AboutPage = () => {
     return(
         <>
+            <Navbar/>
             <div className="great_container">
 
                 <div className="title_div">
