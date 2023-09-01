@@ -10,7 +10,7 @@
     "apps/*"
   ],
   "dependencies": {
-    "mdb-react-ui-kit": "^6.2.0",
+    "bootstrap": "^5.3.1",
     "react-icons": "^4.10.1"
   }
 }

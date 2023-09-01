@@ -58,7 +58,7 @@ nav {
     width: 300px;
 }
 
-input{ 
+#input{ 
     border: 1px solid white;
     background-color: black;
     color: white;
@@ -74,7 +74,7 @@ input{
     border-bottom-left-radius: 10px;
 }
 
-input::placeholder{
+#input::placeholder{
     color: white;
 }
 

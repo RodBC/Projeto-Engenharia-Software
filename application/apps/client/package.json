@@ -12,12 +12,22 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "bootstrap": "^5.3.1",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "mdb-react-ui-kit": "^6.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@types/react-slick": "^0.23.10",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.1",

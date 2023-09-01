@@ -17,15 +17,18 @@ export function Navbar() {
 		<header>
 			<h3>LOGO</h3>
 			<div className="box_Input">
-				<input type="text"  placeholder="Pesquisar..."/>
+				<input type="text"  placeholder="Pesquisar..." id="input"/>
 				<div className="btn_Search">
 					<FaSearch/>
 				</div>
 			</div>
 			<nav ref={navRef} style={{'zIndex': '99999'}}>
-				<a href="/#">Início</a>
-				<a href="/#">Sobre</a>
-				<a href="/#">Contatos</a>
+
+				<a href="/home">Início</a>
+
+				<a href="/about">Sobre</a>
+
+				<a href="/contacts">Contatos</a>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
