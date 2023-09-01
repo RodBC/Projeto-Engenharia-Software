@@ -1,6 +1,3 @@
-import { Card } from "./components/Cards/card"
-import {Navbar} from "./components/Navbar/navbar.jsx"
-import {Locations} from "./components/LocationsCarrousel/Locations"
 import './app_style.css'
 import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
@@ -38,4 +35,3 @@ export const App = () => {
   )
 }
 
-export default App
