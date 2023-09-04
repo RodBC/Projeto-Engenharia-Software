@@ -21,7 +21,7 @@ export const LoginPage = () => {
                                 <input type="submit" value="Login"/>
                             </div>
 
-                            <a href="/register">not registered yet</a>
+                            <a href="/register">ainda não registrado?</a>
                         </form>
                     </div>
                 </div>
