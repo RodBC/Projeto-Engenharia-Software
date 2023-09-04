@@ -2,8 +2,7 @@ import './app_style.css'
 import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
-// import { LoginPage } from "./components/LoginPage/LoginPage.js"
-import LoginPage from './components/LoginPage/LoginPage.js'
+import { ContactPage } from './components/ContactPage/contact.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/AuthRequire.js'
 
@@ -20,7 +19,7 @@ export const App = () => {
           <Route path="/about" element={<AuthRequire><AboutPage/></AuthRequire>}/>
 
           {/* Página de Contatos */}
-          {/* <Route path="/contacts" element={<AboutPage/>}/> */}
+          <Route path="/contacts" element={<ContactPage/>}/>
 
           {/* Página de Usuário */}
           {/* <Route path="/user" element={<AboutPage/>}/> */}
