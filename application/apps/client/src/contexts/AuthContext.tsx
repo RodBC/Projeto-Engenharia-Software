@@ -7,7 +7,6 @@ type User = {
   token: string;
 };
 
-
 type AuthContextType = {
   user: User | null;
   signIn: (email: string, password: string) => Promise<void>;
@@ -17,7 +16,6 @@ type AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -25,7 +23,6 @@ export const useAuth = () => {
   }
   return context;
 };
-
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children })  => {
 
@@ -59,7 +56,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   const isAuthenticated = user !== null;
-
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut, isAuthenticated }}>
