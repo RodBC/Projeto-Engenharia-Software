@@ -2,7 +2,8 @@ import './app_style.css'
 import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
-import { LoginPage } from "./components/LoginPage/LoginPage.js"
+// import { LoginPage } from "./components/LoginPage/LoginPage.js"
+import LoginPage from './components/LoginPage/LoginPage.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 
 export const App = () => {
