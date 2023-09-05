@@ -26,14 +26,13 @@ describe('UsersController', () => {
   it('should return a specific user', async () => {
     const userId = '1'
 
-    const user: User = {
+    const user = Object.assign(new User(), {
       id: userId,
       name: 'John',
       email: 'john@example.com',
       password: '123',
       array_of_groups: '',
-      validatePassword: async (password: string) => true,
-    };
+    });
     usersService.findOne.mockResolvedValue(user);
 
     expect(await usersController.findOne(userId)).toEqual(user);
@@ -47,16 +46,14 @@ describe('UsersController', () => {
         email: 'john@example.com',
         password: '123',
         array_of_groups: '',
-        validatePassword: async (password) => true,
-      },
+      } as any,
       {
         id: '2',
         name: 'joseph',
         email: 'joseph@example.com',
         password: '321',
         array_of_groups: '',
-        validatePassword: async (password) => true,
-      },
+      } as any,
     ];
     usersService.findAll.mockResolvedValue(users);
 
@@ -77,11 +74,9 @@ describe('UsersController', () => {
       email: email,
       password: '123',
       array_of_groups: '',
-      validatePassword: async (password) => true,
-    };
+    } as any;
     usersService.findByEmail.mockResolvedValue(user);
 
-    // remove password from user
     delete user.password;
 
     expect(await usersController.findByEmail(email)).toEqual(user);
