@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -70,7 +69,7 @@ export const Locations = () => {
             <Slider {...settings}>
 
                 {LocationsData.map((data, index) => (
-                    <div className='slides'>
+                    <div className='slides' key={index}>
                         <h3>{data.location}</h3>
                     </div>
                 ))}

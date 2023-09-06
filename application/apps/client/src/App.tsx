@@ -3,9 +3,9 @@ import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
 // import { LoginPage } from "./components/LoginPage/LoginPage.js"
-import LoginPage from './components/LoginPage/LoginPage.js'
+import { LoginPage } from './components/LoginPage/LoginPage.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
-import { AuthRequire } from './contexts/AuthRequire.js'
+import { AuthRequire } from './contexts/auth/AuthRequire.js'
 
 export const App = () => {
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import './LoginPage.css'
 
@@ -9,13 +9,11 @@ type LoginForm = {
   password: string;
 };
 
-const LoginPage = () => {
+export const LoginPage = () => {
 
   const { signIn } = useAuth();
   const { register, handleSubmit } = useForm<LoginForm>();
   const navigate = useNavigate();
-
-
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (data: LoginForm) => {
@@ -69,5 +67,3 @@ const LoginPage = () => {
     </>
   );
 };
-
-export default LoginPage;

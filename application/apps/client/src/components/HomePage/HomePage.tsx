@@ -1,20 +1,22 @@
-import { Card } from "../Cards/card"
-// import {Navbar} from "../Navbar/navbar.jsx"
 import {Locations} from "../LocationsCarrousel/Locations"
-import './HomePage.css'
 import { Footer } from "../Footer/Footer.js"
-
 import {Navbar} from "../Navbar/navbar.jsx"
 import {TestCard} from "../TestCard/TestCard"
-// import {Routes, Route} from 'react-router-dom'
-
+import { AuthContext } from "../../contexts/auth/AuthContext.js"
+import { useContext } from "react"
+import './HomePage.css'
 
 export const HomePage = () => {
+    const auth = useContext(AuthContext)
+
     return(
       <>  
         <Navbar/>
         <div className="title1">
             <h1>HelpCife</h1>
+            {`Olá, ${auth?.user?.name}!`}
+            <br />
+            {auth?.user && <button onClick={auth.signOut}>Sair</button>}
         </div>
         
         <div className="locations_buttons">
