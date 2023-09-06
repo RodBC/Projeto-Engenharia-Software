@@ -16,6 +16,7 @@ async function bootstrap() {
 
 
   app.setGlobalPrefix('api');
+  app.enableCors(); // Permite todas as origens (não recomendado para produção)
   await app.listen(3000);
 }
 bootstrap();
