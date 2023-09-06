@@ -14,8 +14,6 @@ export const LoginPage = () => {
   const { signIn } = useAuth();
   const { register, handleSubmit } = useForm<LoginForm>();
   const navigate = useNavigate();
-
-
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (data: LoginForm) => {

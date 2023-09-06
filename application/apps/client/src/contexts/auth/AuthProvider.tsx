@@ -1,6 +1,6 @@
 import { AuthContext } from "./AuthContext";
 import { User } from "../../types/User";
-import { setCookie, parseCookies } from "nookies";
+import { setCookie, parseCookies, destroyCookie } from "nookies";
 import { useState, useEffect} from "react";
 import { useApi } from "../../hooks/useApi";
 
@@ -19,7 +19,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if(token && id){
 
           const response = await Api.validateToken(token, id)
-          setUser( {id: response.id} )
+          setUser( {id: response.id, name:response.name} )
         }}
         validateToken()
     }, [Api]); 
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCookie(undefined, 'reactauth.user_id', user_id.toString(), {
           maxAge: 60 * 60 * 1 // 1 hour
         });
-        setUser({ id: user_id });
+        setUser({ id: user_id, name: "" });
 
       } catch (error) {
         console.error("Erro ao fazer login:", error);
@@ -47,6 +47,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     const signOut = () => {
+
+      destroyCookie(null, "reactauth.user_id", { path: '/' })
+      destroyCookie(null, "reactauth.token", { path: '/' })
       setUser(null);
     };
 
