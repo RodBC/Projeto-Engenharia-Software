@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "turbo": "^1.10.7"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "react-icons": "^4.10.1"
+  }
+}

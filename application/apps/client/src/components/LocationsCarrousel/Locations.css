@@ -1,0 +1,37 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.sliders-container{
+    padding: 5rem;
+    color: #fff;
+}
+
+
+.slides{
+    background-color: grey;
+    white-space: nowrap; /* Impede a quebra de linha do texto */
+    text-overflow: ellipsis; /* Adiciona reticências (...) quando há overflow de texto */
+}
+
+.slides h3{
+    text-align: center;
+}
+
+.slick-slide div{
+    margin:0 1em;
+    display: flex;
+    border-radius: 5px;
+    
+}
+
+.slick-slide .slick-active .slick-current{
+    border: 100px solid #000000;
+    width: 0%;
+    height: 0%;
+}
+
+
