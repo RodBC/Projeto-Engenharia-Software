@@ -14,7 +14,7 @@ export const HomePage = () => {
         <Navbar/>
         <div className="title1">
             <h1>HelpCife</h1>
-            {`Olá, ${auth?.user?.name}!`}
+            {auth?.user && `Olá, ${auth?.user?.name}!`}
             <br />
             {auth?.user && <button onClick={auth.signOut}>Sair</button>}
         </div>

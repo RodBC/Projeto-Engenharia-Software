@@ -14,7 +14,7 @@ export const App = () => {
       {/* <Navbar/> */}
       <Routes>
           {/* Página de Início */}
-          <Route path="/home" element={<AuthRequire><HomePage/></AuthRequire>}/>
+          <Route path="/home" element={<HomePage/>}/>
 
           {/* Página de Sobre */}
           <Route path="/about" element={<AuthRequire><AboutPage/></AuthRequire>}/>
