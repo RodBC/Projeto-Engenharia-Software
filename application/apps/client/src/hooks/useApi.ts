@@ -37,7 +37,19 @@ export const useApi = () => ({
         }
       },
     
-    
-      
-      
+    signUp: async (email: string, password:string, name:string) => {
+      try {
+        const response = await api.post("/api/auth/sign-up", {
+          email,
+          password,
+          name,
+          array_of_groups:"zero"
+        });
+
+        return response.data
+      } catch (error) {
+        console.error('Erro ao cadastrar:', error);
+        throw error;
+      }
+    }      
 })

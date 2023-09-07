@@ -33,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const user_id = response.data.user_id;
 
         setCookie(undefined, 'reactauth.token', access_token, {
-          maxAge: 60 * 60 * 1 // 1 hour
+          maxAge: 60 * 60 * 1// 1 hour
         });
         setCookie(undefined, 'reactauth.user_id', user_id.toString(), {
           maxAge: 60 * 60 * 1 // 1 hour
@@ -42,6 +42,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       } catch (error) {
         console.error("Erro ao fazer login:", error);
+        throw error;
+      }
+    };
+
+    const signUp = async (email:string, password:string, name:string) => {
+      try{
+        const response = await Api.signUp(email, password, name)
+
+        setUser( { id: NaN, name:response.name } )
+      } catch(error){
+        console.error("Erro ao cadastrar:", error);
         throw error;
       }
     };
@@ -56,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const isAuthenticated = user !== null;
 
     return (
-      <AuthContext.Provider value={{ user, signIn, signOut, isAuthenticated }}>
+      <AuthContext.Provider value={{ user, signIn, signOut, signUp, isAuthenticated }}>
         {children}
       </AuthContext.Provider>
     );
