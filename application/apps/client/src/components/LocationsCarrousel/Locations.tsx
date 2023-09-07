@@ -14,7 +14,7 @@ export const Locations = () => {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
+        slidesToShow: 12,
         slidesToScroll: 4,
         initialSlide: 0,
         responsive: [

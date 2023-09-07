@@ -1,0 +1,95 @@
+body{
+    height: 100vh;
+}
+
+#ini_name{
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+}
+
+#tabcontainer{
+    margin-left: 30vw;
+    margin-right:30vw;
+    background-color: white;
+    height: 60vh;
+    overflow: hidden;
+}
+
+#aboutext{
+    text-align: left;
+    float: center;
+    width: 20vw;;
+    padding-top: 5vh;
+    padding-left: 0.5vw;
+}
+#locationtext{
+    text-align: left;
+    float: center;
+    padding-top: 2vh;
+    padding-left: 0.5vw;
+}
+
+#locationtext span{
+    font-size: large;
+    font-weight: bold;
+}
+
+#imagegrid {
+    width: 100%; 
+    height: 100%; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 20px; 
+    padding: 0 5vw; 
+    padding-top: 2vh;
+    align-items: center;
+    overflow-y: auto; 
+  }
+
+#followersgrid{
+    width: 100%; 
+    height: 100%; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 35px; 
+    padding: 0 5vw; 
+    padding-top: 3vh;
+    align-items: center;
+    overflow-y: auto; 
+}
+  
+.Ini_Images{
+    max-width: 100%;
+    max-height: 100%;
+    width: 350px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0%;
+    cursor: pointer;
+  }
+
+  .Ini_Images:hover{
+    transform: scale(1.1);
+  }
+
+
+.follower_image{
+    max-width: 100%;
+    max-height: 100%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
+    border-radius: 0%;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+
+.follower_image:hover{
+    transform: scale(1.1);
+}
+
+
+
+  
+  

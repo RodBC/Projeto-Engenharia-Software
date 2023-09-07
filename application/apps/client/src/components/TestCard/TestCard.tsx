@@ -5,6 +5,7 @@ import '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import montanha from '../../assets/fotoCool.jpeg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import './TestCard.css'
 
 
 
@@ -61,7 +62,7 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
   return (
 
         // style={{ width: '100%'}}
-        <Card style={{ width: '100%', height:'100%'}}>
+        <Card id='Card_'style={{ width: '100%', height:'100%'}}>
           <Card.Img variant="top" src={montanha} />
           <Card.Body>
             <Card.Title>{data.iniciativa}</Card.Title>
