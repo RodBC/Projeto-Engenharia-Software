@@ -2,98 +2,106 @@ import { useAuth } from '../../contexts/auth/AuthContext'
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import * as C from './styles'
+import Button from './Button/Button';
+import Input from './Input/Input';
 
-type RegisterForm = {
-    email: string;
-    password: string;
-    password2: string;
-    username: string;
-  };
-  
 export const RegisterPage =()=> {
 
   const navigate = useNavigate();
   const { signUp } = useAuth();
-  const { register, handleSubmit } = useForm<RegisterForm>();
+  const { register } = useForm();
   const [error, setError] = useState<string | null>(null);
-
+  
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const onSubmit = async (data: RegisterForm) => {
+  const onSubmit = async () => {
     try {
-      
       if (password !== password2) {
-            setError("As senhas não são iguais!");
-            return;
-      }else{
-        await signUp(data.email, data.password, data.username);
-        alert("Usuário cadastrado com sucesso!")
-        navigate('/login')
+        setError("As senhas não são iguais!");
+        return;
+      } else if (!email || !username || !password || !password2) {
+        setError("Preencha todos os campos!");
+        return;
+      } else if (!isValidEmail(email)) {
+        setError("Email inválido!");
+        return;
+      } else if (password.length < 8) {
+        setError("A senha deve ter pelo menos 8 caracteres!");
+        return;
+      } else {
+        await signUp(email, password, username);
+        setError("")
+        navigate('/login');
       }
-
     } catch (error) {
-      setError("Usuário já possui cadastro!");
+      setError("Já existe cadastro neste e-mail!");
     }
   };
-  return (
-      <div id="cool_div">
-          <h1>Registro</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                  <input 
-                  {...register("username")}
-                  type="text" 
-                  id="username" 
-                  placeholder="nome de usuário..."
-                  name="username" 
-                  required/>
-              </div>
-              
-              <div>
-                  <input
-                   {...register("email")}
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  placeholder="email..." 
-                  required/>
-              </div>
-              
-              <div>
-                  <input 
-                  {...register("password")}
-                  onChange={(e)=>{[setPassword(e.target.value)]}}
-                  value={password}
-                  type="password" 
-                  id="password" 
-                  name="password"
-                  placeholder="senha..." 
-                  required/>
-              </div>
-              
-              <div>
-                  <input
-                  {...register("password2")}
-                  onChange={(e)=>{[setPassword2(e.target.value)]}}
-                  value={password2}
-                  type="password" 
-                  id="password2"
-                  name="password2"
-                  placeholder="confirme a senha..." 
-                  required/>
-              </div>
-              
-              <div>
-                  <input 
-                  type="submit" 
-                  value="Registrar"/>
-              </div>
 
-              {error && <p>{error}</p>}
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  
+  return (
+     
+    <C.Container>
+      <C.Content>
+        <C.Label>CADASTRE-SE</C.Label>
+            <Input
+            {...register("username")}
+            onChange={(e)=>{[setUsername(e.target.value)]}}
+            value={username}
+            type="text" 
+            id="username" 
+            placeholder="nome de usuário"
+            name="username"
+            required={true}/>
+         
+            <Input
+            {...register("email")}
+            onChange={(e)=>{[setEmail(e.target.value)]}}
+            value={email}
+            type="email" 
+            id="email" 
+            name="email"
+            placeholder="example@email.com" 
+            required/>  
               
-              <a href="/login">já estou registrado</a>
-          </form>
-      </div>
+            <Input
+            {...register("password")}
+            onChange={(e)=>{[setPassword(e.target.value)]}}
+            value={password}
+            type="password" 
+            id="password" 
+            name="password"
+            placeholder="senha" 
+            required
+            />
+
+            <Input
+            {...register("password2")}
+            onChange={(e)=>{[setPassword2(e.target.value)]}}
+            value={password2}
+            type="password" 
+            id="password2"
+            name="password2"
+            placeholder="confirme sua senha" 
+            required/>
+
+            <Button Text="Registrar" Type='submit' onClick={onSubmit}/>
+            <C.labelError>{error }</C.labelError>
+            <C.LabelSignup>
+                Já tem uma conta?
+            <C.Strong>
+                <a href="/login">&nbsp;Entre</a>
+            </C.Strong>
+            </C.LabelSignup>
+        </C.Content>
+    </C.Container>    
   )
 }
