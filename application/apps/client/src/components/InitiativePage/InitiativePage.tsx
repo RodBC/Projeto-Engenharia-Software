@@ -9,6 +9,9 @@ import './InitiativePage.css';
 import TestImg from '../../assets/rec_antigo.jpg'
 import ProfileImg from '../../assets/profile.png'
 import { BsFillGeoAltFill } from "react-icons/bs";
+import {AiFillFacebook} from 'react-icons/ai'
+import {AiFillInstagram} from 'react-icons/ai'  
+import {AiFillTwitterCircle} from 'react-icons/ai'
 
 
 
@@ -20,17 +23,6 @@ export const InitiativePage= ()=> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
   return (
 
     <>
@@ -40,12 +32,13 @@ export const InitiativePage= ()=> {
         <div  id='tabcontainer'>
           <Tabs defaultActiveKey={'sobre'} id='Tab_Bar'>
 
-
-
-
-
               <Tab title='sobre' eventKey='sobre'>
-                  {/* <i className="FaLocationDot"></i> */}
+
+                  <div id='icons_div'>
+                      <AiFillFacebook className='social_icons'/>
+                      <AiFillInstagram className='social_icons'/>
+                      <AiFillTwitterCircle className='social_icons'/>
+                  </div>
 
                   <div id='locationtext'>
                       <span>/ local da iniciativa /<BsFillGeoAltFill/> </span>

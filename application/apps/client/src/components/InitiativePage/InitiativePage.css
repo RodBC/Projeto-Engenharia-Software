@@ -19,7 +19,7 @@ body{
     text-align: left;
     float: center;
     width: 20vw;;
-    padding-top: 5vh;
+    padding-top: 3vh;
     padding-left: 0.5vw;
 }
 #locationtext{
@@ -89,6 +89,16 @@ body{
     transform: scale(1.1);
 }
 
+#icons_div{
+    float: right;
+    padding-right: 3vw;
+    padding-top: 1vh;
+    font-size: 3.5rem;
+}
+
+.social_icons{
+    margin-right: 1.3rem;
+}
 
 
   
