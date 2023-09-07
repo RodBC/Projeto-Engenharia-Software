@@ -95,12 +95,12 @@ export const RegisterPage =()=> {
 
             <Button Text="Registrar" Type='submit' onClick={onSubmit}/>
             <C.labelError>{error }</C.labelError>
-            <C.LabelSignin>
+            <C.LabelSignup>
                 Já tem uma conta?
             <C.Strong>
                 <a href="/login">&nbsp;Entre</a>
             </C.Strong>
-            </C.LabelSignin>
+            </C.LabelSignup>
         </C.Content>
     </C.Container>    
   )

@@ -29,7 +29,7 @@ export const Label = styled.label`
   color: #676767;
 `;
 
-export const LabelSignup = styled.label`
+export const LabelSignin = styled.label`
   font-size: 16px;
   color: #676767;
 `;
@@ -44,6 +44,6 @@ export const Strong = styled.strong`
 
   a {
     text-decoration: none;
-    color: #046ee5;
+    color: #676767;
   }
 `;
