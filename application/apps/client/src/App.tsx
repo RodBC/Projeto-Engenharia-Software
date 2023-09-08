@@ -2,7 +2,12 @@ import './app_style.css'
 import {Routes, Route} from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
+<<<<<<< HEAD
 import { ContactPage } from './components/ContactPage/contact.js'
+=======
+import { ContactPage } from "./components/ContactPage/contact.tsx"
+import { LoginPage } from "./components/LoginPage/LoginPage.js"
+>>>>>>> 575436313ce65e83bce7ecd3f9cd2bc726741bda
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/AuthRequire.js'
 import {LoginPage} from './components/LoginPage/LoginPage.js'

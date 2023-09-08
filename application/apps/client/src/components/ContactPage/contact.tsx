@@ -110,8 +110,3 @@ export const ContactPage = () =>{
     </>
     )
 }
-
-
-
-
-// pg_ctl -D "C:\Program Files\PostgreSQL\16rc1\data" stop -s
