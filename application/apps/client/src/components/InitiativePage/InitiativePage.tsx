@@ -11,6 +11,7 @@ import { BsFillGeoAltFill } from "react-icons/bs";
 import {AiFillFacebook} from 'react-icons/ai'
 import {AiFillInstagram} from 'react-icons/ai'  
 import {AiFillTwitterCircle} from 'react-icons/ai'
+import{BiSolidPin} from 'react-icons/bi'
 
 
 
@@ -40,7 +41,7 @@ export const InitiativePage= ()=> {
                   </div>
 
                   <div id='locationtext'>
-                      <span>/ local da iniciativa /<BsFillGeoAltFill/> </span>
+                      <span><BsFillGeoAltFill/> local da iniciativa</span>
                   </div>
 
                   <div id='aboutext'>
@@ -124,7 +125,7 @@ export const InitiativePage= ()=> {
                     <div id='muralgrid'>
 
                         <div className='msg_div'>
-                            <h6 className='post_title'>titulo do post</h6>
+                            <h6 className='post_title'> <BiSolidPin/> titulo do post</h6>
                             <span>aumentamos a quantidade de cachorros com chupeta na região do grande recife</span>
                         </div>
 
