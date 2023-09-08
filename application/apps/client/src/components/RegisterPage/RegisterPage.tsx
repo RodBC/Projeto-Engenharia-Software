@@ -5,6 +5,7 @@ import { useState } from 'react';
 import * as C from './styles'
 import Button from './Button/Button';
 import Input from './Input/Input';
+import image from '../../assets/GIF.gif'
 
 export const RegisterPage =()=> {
 
@@ -52,6 +53,9 @@ export const RegisterPage =()=> {
     <C.Container>
       <C.Content>
         <C.Label>CADASTRE-SE</C.Label>
+
+          <C.IconWrapper>
+            <C.UserIcon /> 
             <Input
             {...register("username")}
             onChange={(e)=>{[setUsername(e.target.value)]}}
@@ -61,7 +65,10 @@ export const RegisterPage =()=> {
             placeholder="nome de usuário"
             name="username"
             required={true}/>
-         
+          </C.IconWrapper>
+            
+          <C.IconWrapper>
+            <C.EmailIcon />
             <Input
             {...register("email")}
             onChange={(e)=>{[setEmail(e.target.value)]}}
@@ -71,7 +78,10 @@ export const RegisterPage =()=> {
             name="email"
             placeholder="example@email.com" 
             required/>  
-              
+          </C.IconWrapper>
+
+          <C.IconWrapper>
+            <C.PasswordIcon />
             <Input
             {...register("password")}
             onChange={(e)=>{[setPassword(e.target.value)]}}
@@ -82,7 +92,10 @@ export const RegisterPage =()=> {
             placeholder="senha" 
             required
             />
+          </C.IconWrapper>
 
+          <C.IconWrapper>
+            <C.PasswordIcon />
             <Input
             {...register("password2")}
             onChange={(e)=>{[setPassword2(e.target.value)]}}
@@ -92,6 +105,7 @@ export const RegisterPage =()=> {
             name="password2"
             placeholder="confirme sua senha" 
             required/>
+          </C.IconWrapper>
 
             <Button Text="Registrar" Type='submit' onClick={onSubmit}/>
             <C.labelError>{error }</C.labelError>
@@ -102,6 +116,14 @@ export const RegisterPage =()=> {
             </C.Strong>
             </C.LabelSignup>
         </C.Content>
+        <div>
+          <div>
+          <C.Title>Cadastre-se</C.Title>
+          <C.Title>E entre para o nosso time</C.Title>
+          </div>
+          <C.Image src={image}/>
+          
+        </div>
     </C.Container>    
   )
 }

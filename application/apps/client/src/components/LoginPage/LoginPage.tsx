@@ -29,33 +29,40 @@ export const LoginPage = () => {
     <C.Container>
       <C.Content>
         <C.Label>LOGIN</C.Label> 
-               
+        
+        <C.IconWrapper>
+        <C.Email/>
         <Input
           onChange={(e)=>{[setEmail(e.target.value)]}}
           value={email}
           type="email"
           name="email"
           id="email"
-          placeholder="email..."
+          placeholder="example@email.com"
           required={true}
         />
-              
+        </C.IconWrapper>
+
+        <C.IconWrapper>
+        <C.Icon />
         <Input
           onChange={(e)=>{[setPassword(e.target.value)]}}
           value={password}
           type="password"
           name="password"
           id="password"
-          placeholder="senha..."
+          placeholder="senha"
           required
         />
+        </C.IconWrapper>
          
         <Button Text="Login" Type="submit" onClick={onSubmit}/>   
         <C.labelError>{error }</C.labelError>
         <C.LabelSignin>
-          <C.Strong>
-            <a href="/register">&nbsp;Registre-se</a>
-          </C.Strong>
+          Não possui conta?
+            <C.Strong>
+                <a href="/register">&nbsp;Registre-se</a>
+            </C.Strong>
         </C.LabelSignin>  
       </C.Content>
     </C.Container>
