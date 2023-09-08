@@ -6,6 +6,7 @@ import * as C from './styles'
 import Button from './Button/Button';
 import Input from './Input/Input';
 import image from '../../assets/GIF.gif'
+import { showSuccessToast, showErrorToast, showAutoCloseAlert } from '../Alert/Alert';
 
 export const RegisterPage =()=> {
 
@@ -35,11 +36,15 @@ export const RegisterPage =()=> {
         return;
       } else {
         await signUp(email, password, username);
-        setError("")
+        await showAutoCloseAlert("Validando Cadastro...");
+        setError("");
+        showSuccessToast('Registrado com sucesso!');
         navigate('/login');
       }
     } catch (error) {
+      await showAutoCloseAlert("Validando Cadastro...");
       setError("Já existe cadastro neste e-mail!");
+      showErrorToast("Usuário já cadastrado!")
     }
   };
 
@@ -119,7 +124,7 @@ export const RegisterPage =()=> {
         <div>
           <div>
           <C.Title>Cadastre-se</C.Title>
-          <C.Title>E entre para o nosso time</C.Title>
+          <C.Title>E apoie uma iniciativa</C.Title>
           </div>
           <C.Image src={image}/>
           
