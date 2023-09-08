@@ -9,7 +9,7 @@ import {
 export class OwnerGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const user = request.user; // Este é o usuário extraído do token JWT após a autenticação
+    const user = request.user;
 
     const userIdFromRoute = parseInt(request.query.userId);
 

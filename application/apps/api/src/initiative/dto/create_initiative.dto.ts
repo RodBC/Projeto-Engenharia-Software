@@ -1,22 +1,22 @@
 /* eslint-disable prettier/prettier */
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto {
+export class CreateInitiativeDto {
     @ApiProperty({
-        description: 'The name of the user',
+        description: 'The name of the initiative',
         required: true,
     })
     name: string;
 
     @ApiProperty({
-        description: 'The password of the user',
+        description: 'The description of the initiative',
         required: true,
     })
-    password: string;
+    description: string;
 
     @ApiProperty({
-        description: 'The email of the user',
+        description: 'The images of the initiative',
         required: true,
     })
-    email: string;
+    images: string[];
 }
