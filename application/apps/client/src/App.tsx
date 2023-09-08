@@ -5,6 +5,7 @@ import { AboutPage } from "./components/AboutPage/AboutPage.js"
 import { ContactPage } from './components/ContactPage/contact.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/AuthRequire.js'
+import {LoginPage} from './components/LoginPage/LoginPage.js'
 
 export const App = () => {
 
