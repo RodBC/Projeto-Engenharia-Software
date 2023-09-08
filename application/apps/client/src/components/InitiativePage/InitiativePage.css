@@ -1,11 +1,46 @@
 body{
-    height: 100vh;
+    /* height: 100vh; */
+    text-align: center;
 }
 
-#ini_name{
-    padding-bottom: 5vh;
-    padding-top: 5vh;
+/* ---------------------------------------------------------- CAMPO DE COPIAR LINKS */ 
+#copy_link_div{
+    background-color: white;
+    margin-left: 40vw;
+    margin-right: 40vw;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+    height:3vh;
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    text-align: center;
 }
+
+    #copy_text{
+        float: right;
+        background-color: green;
+        height: 3vh;
+        color: white;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #link_text{
+        font-weight: bold;
+        text-align: center
+    };
+/* ----------------------------------------------------------CAMPO DO TÍTULO DA INICIATIVA:*/
+
+#ini_name{
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+
+/* ----------------------------------------------------------CAMPO DO TABBED COMPONENT:*/
 
 #tabcontainer{
     margin-left: 30vw;
@@ -57,6 +92,42 @@ body{
     align-items: center;
     overflow-y: auto; 
 }
+
+#muralgrid{
+    width: 100%; 
+    height: 100%; 
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    grid-gap: 20px; 
+    padding: 0 5vw; 
+    padding-top: 2vh;
+    align-items: center;
+    overflow-y: auto;
+}
+
+    .msg_div{
+        background-color: rgb(242, 240, 240);
+        color: rgb(0, 0, 0);
+        margin-left: 5vw;
+        margin-right: 5vw;
+        border: 1px solid rgb(197, 195, 195);
+        padding: 1vh;
+        text-align: left;
+    }
+
+    #mural_text1{
+        float: center;
+        margin-left: 2rem;
+        font-size: larger;
+        font-weight: bold;
+        margin-top: 1vh;
+    }
+
+    .post_title{
+        text-align: left;
+        border-bottom: 1px solid rgb(197, 195, 195);
+        font-weight: bold;
+    }
   
 .Ini_Images{
     max-width: 100%;
@@ -99,3 +170,5 @@ body{
 .social_icons{
     margin-right: 1.3rem;
 }
+
+/* ----------------------------------------------------------

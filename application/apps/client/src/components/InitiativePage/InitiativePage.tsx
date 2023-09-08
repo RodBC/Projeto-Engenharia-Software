@@ -14,20 +14,20 @@ import {AiFillTwitterCircle} from 'react-icons/ai'
 
 
 
+
 export const InitiativePage= ()=> {
-
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-
-
-
 
   return (
 
     <>
       <Navbar/>
 
-        <h3 id='ini_name'>/placeholder for title/</h3>
+        <h3 id='ini_name'>Cachorro Chupetones</h3>
+
+        <div id='copy_link_div'>
+            <span id='link_text'>https://iniciativacachorrochupetao.com.br</span><span id='copy_text'>copiar link</span>
+        </div>
+        
         <div  id='tabcontainer'>
           <Tabs defaultActiveKey={'sobre'} id='Tab_Bar'>
 
@@ -117,11 +117,20 @@ export const InitiativePage= ()=> {
 
 
 
-              <Tab title='comentarios' eventKey='comentarios'>
+              <Tab title='mural' eventKey='mural'>
 
+                    <div id='mural_text1'>Atualizações</div>
+
+                    <div id='muralgrid'>
+
+                        <div className='msg_div'>
+                            <h6 className='post_title'>titulo do post</h6>
+                            <span>aumentamos a quantidade de cachorros com chupeta na região do grande recife</span>
+                        </div>
+
+                    </div>
 
               </Tab>
-
 
           </Tabs>
         </div>

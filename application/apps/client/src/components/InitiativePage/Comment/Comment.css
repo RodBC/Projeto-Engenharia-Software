@@ -1,0 +1,10 @@
+.msg_div{
+    background-color: rgb(242, 240, 240);
+    color: rgb(0, 0, 0);
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border: 1px solid rgb(197, 195, 195);
+    padding: 1vh;
+    text-align: left;
+}
+
