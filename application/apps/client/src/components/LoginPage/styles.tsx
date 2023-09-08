@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { GiPadlock } from 'react-icons/gi'
+import { MdEmail } from 'react-icons/md'
 
 export const Container = styled.div`
   display: flex;
@@ -7,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 10px;
   height: 100vh;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -44,6 +47,26 @@ export const Strong = styled.strong`
 
   a {
     text-decoration: none;
-    color: #676767;
+    color: #046ee5;
   }
+`;
+
+export const Icon = styled(GiPadlock)`
+  position: absolute;
+  pointer-events: none;
+  padding-left: 2px;
+  color: #676767;
+`;
+
+export const Email = styled(MdEmail)`
+  position: absolute;
+  pointer-events: none;
+  padding-left: 2px;
+  color: #676767;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
 `;
