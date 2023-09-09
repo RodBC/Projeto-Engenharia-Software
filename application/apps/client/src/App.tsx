@@ -7,6 +7,7 @@ import { LoginPage } from './components/LoginPage/LoginPage.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/auth/AuthRequire.js'
 import { InitiativePage } from './components/InitiativePage/InitiativePage.tsx'
+import { InitiativeForm } from './components/InitiativeForms/initiative_forms.tsx'
 
 export const App = () => {
 
@@ -35,6 +36,7 @@ export const App = () => {
 
           {/* página da iniciativa */}
           <Route path='/main' element={<InitiativePage/>}/>
+          <Route path='/InitiativeForms' element={<InitiativeForm/>}/>
 
       </Routes>
     </div>
