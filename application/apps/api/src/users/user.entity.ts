@@ -17,9 +17,6 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
-    array_of_groups: string;
-
     async validatePassword(password: string): Promise<boolean> {
         return bcrypt.compare(password, this.password);
       }

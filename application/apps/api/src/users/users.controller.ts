@@ -10,11 +10,6 @@ import { OwnerGuard } from '../auth/owner.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  // @Post()
-  // async create(@Body() createUserDto: CreateUserDto) {
-  //   return this.usersService.create(createUserDto);
-  // }
-
   @Get('/')
   @UseGuards(OwnerGuard)
   async findOne(@Query('userId') userId: string) {
@@ -54,14 +49,4 @@ export class UsersController {
 
     return users;
   }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.usersService.update(+id, updateUserDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
 }
