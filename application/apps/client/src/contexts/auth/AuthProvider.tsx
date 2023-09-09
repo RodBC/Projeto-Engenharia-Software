@@ -3,6 +3,14 @@ import { User } from "../../types/User";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import { useState, useEffect} from "react";
 import { useApi } from "../../hooks/useApi";
+import jwtDecode from "jwt-decode";
+
+interface DecodedToken {
+  sub: number; 
+  exp: number;
+  iat: number;
+  email: string;
+}
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children })  => {
 
@@ -17,9 +25,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const token = cookies["reactauth.token"];
       
         if(token && id){
-
           const response = await Api.validateToken(token, id)
           setUser( {id: response.id, name:response.name} )
+
         }}
         validateToken()
     }, [Api]); 
@@ -30,15 +38,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const response = await Api.signIn(email, password)
 
         const access_token = response.data.access_token 
-        const user_id = response.data.user_id;
+
+        const decodedToken = jwtDecode<DecodedToken>(access_token);
 
         setCookie(undefined, 'reactauth.token', access_token, {
           maxAge: 60 * 60 * 1// 1 hour
         });
-        setCookie(undefined, 'reactauth.user_id', user_id.toString(), {
+        setCookie(undefined, 'reactauth.user_id', decodedToken.sub.toString(), {
           maxAge: 60 * 60 * 1 // 1 hour
         });
-        setUser({ id: user_id, name: "" });
+        setUser({ id: decodedToken.sub, name: "" });
 
       } catch (error) {
         console.error("Erro ao fazer login:", error);
@@ -50,7 +59,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try{
         const response = await Api.signUp(email, password, name)
 
-        setUser( { id: NaN, name:response.name } )
+        setUser( { id: response.id , name:response.name } )
       } catch(error){
         console.error("Erro ao cadastrar:", error);
         throw error;
