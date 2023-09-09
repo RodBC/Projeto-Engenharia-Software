@@ -49,7 +49,7 @@ export const InitiativePage= ()=> {
             <div id='copy_link_div'>
 
                     <span id='link_text'>{link_text}</span>
-                    <button id='copy_text' onClick={()=>{CopyText()}}>copiar link</button>
+                    <span id='copy_text' onClick={()=>{CopyText()}}>copiar link</span>
 
             </div>
 
@@ -109,44 +109,44 @@ export const InitiativePage= ()=> {
                 </Tab>
 
 
-
-
-
                 <Tab title='imagens' eventKey='imagens'>
                     {/* aqui vem um grid de imagens */}
-
-                    <div id='imagegrid'>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
-                        <img src={TestImg} alt="" className='Ini_Images'/>
+                    <div id='imagegrid-container'>
+                        <div id='imagegrid'>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                            <img src={TestImg} alt="" className='Ini_Images'/>
+                        </div>
                     </div>
                 </Tab>
 
+
                 <Tab title='seguidores' eventKey='seguidores'>
-                
-                    <div id='followersgrid'>
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
-                    <img src={ProfileImg} alt="" className='follower_image' />
+                    <div id='followersgrid-div'>
+                        <div id='followersgrid'>
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                            <img src={ProfileImg} alt="" className='follower_image' />
+                        </div>
                     </div>
                 </Tab>
 

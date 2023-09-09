@@ -36,6 +36,7 @@ export const App = () => {
           {/* página da iniciativa */}
           <Route path='/main' element={<InitiativePage/>}/>
 
+          {/* página de perfil */}
       </Routes>
     </div>
   )
