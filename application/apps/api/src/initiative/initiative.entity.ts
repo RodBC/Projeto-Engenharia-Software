@@ -15,9 +15,9 @@ export class Initiative {
     @Column()
     description: string;
 
-    @Column()
+    @Column("text", { array: true, nullable: true })
     images: string[];
 
-    @Column()
+    @Column("text", { array: true, nullable: true })
     socials: string[];
 }
