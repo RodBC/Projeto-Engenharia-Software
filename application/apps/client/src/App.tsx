@@ -38,6 +38,7 @@ export const App = () => {
           <Route path='/main' element={<InitiativePage/>}/>
           <Route path='/InitiativeForms' element={<InitiativeForm/>}/>
 
+          {/* página de perfil */}
       </Routes>
     </div>
   )
