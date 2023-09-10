@@ -1,5 +1,4 @@
 import { useAuth } from '../../contexts/auth/AuthContext'
-import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import * as C from './styles'
@@ -12,7 +11,6 @@ export const RegisterPage =()=> {
 
   const navigate = useNavigate();
   const { signUp } = useAuth();
-  const { register } = useForm();
   const [error, setError] = useState<string | null>(null);
   
   const [username, setUsername] = useState("")
@@ -62,7 +60,6 @@ export const RegisterPage =()=> {
           <C.IconWrapper>
             <C.UserIcon /> 
             <Input
-            {...register("username")}
             onChange={(e)=>{[setUsername(e.target.value)]}}
             value={username}
             type="text" 
@@ -75,7 +72,6 @@ export const RegisterPage =()=> {
           <C.IconWrapper>
             <C.EmailIcon />
             <Input
-            {...register("email")}
             onChange={(e)=>{[setEmail(e.target.value)]}}
             value={email}
             type="email" 
@@ -88,7 +84,6 @@ export const RegisterPage =()=> {
           <C.IconWrapper>
             <C.PasswordIcon />
             <Input
-            {...register("password")}
             onChange={(e)=>{[setPassword(e.target.value)]}}
             value={password}
             type="password" 
@@ -102,7 +97,6 @@ export const RegisterPage =()=> {
           <C.IconWrapper>
             <C.PasswordIcon />
             <Input
-            {...register("password2")}
             onChange={(e)=>{[setPassword2(e.target.value)]}}
             value={password2}
             type="password" 

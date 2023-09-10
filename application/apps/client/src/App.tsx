@@ -5,6 +5,7 @@ import { LoginPage } from './components/LoginPage/LoginPage.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/auth/AuthRequire.js'
 import './app_style.css'
+import { UserPage } from './components/UserPage/UserPage.js'
 
 export const App = () => {
 
@@ -25,6 +26,8 @@ export const App = () => {
 
         {/* Página de Login */}
         <Route path="/login" element={<LoginPage />} />
+
+        <Route path='/UserPage' element={<AuthRequire><UserPage/></AuthRequire>} />
 
       </Routes>
     </div>
