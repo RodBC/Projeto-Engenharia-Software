@@ -3,6 +3,13 @@ import {Footer} from '../Footer/Footer.tsx'
 import {Main,About,Socials,UserImg,Button} from './formStyles.tsx'
 import ian from '../../assets/fotoCool.jpeg'
 
+import {AiFillFacebook} from 'react-icons/ai'
+
+import {AiFillInstagram} from 'react-icons/ai'  
+
+import {AiFillTwitterCircle} from 'react-icons/ai'
+
+
 
 export const InitiativeForm = () =>{
     return(
@@ -23,18 +30,19 @@ export const InitiativeForm = () =>{
                     
                     <div style={{'display':'flex','flex-direction':'column','text-align':'start'}}>
                         <p style={{'margin-bottom':'0.32em'}}>Redes Sociais</p>
+
                         <label htmlFor="">
-                        <img src="" alt="" />
-                        <Socials className='form-control' placeholder="Link..."/>
+                            <AiFillFacebook style ={{'width':'2rem', 'height':'2rem'}}/> <Socials className='form-control' placeholder="Link..."/> 
                         </label>
 
                         <label htmlFor="">
-                        <Socials className='form-control' placeholder="Link..."/>
+                            <AiFillInstagram style ={{'width':'2rem', 'height':'2rem'}}/> <Socials className='form-control' placeholder="Link..."/> 
                         </label>
 
                         <label htmlFor="">
-                        <Socials className='form-control' placeholder="Link..."/>
+                            <AiFillTwitterCircle style ={{'width':'2rem', 'height':'2rem'}}/> <Socials className='form-control' placeholder="Link..."/> 
                         </label>
+
                     </div>
 
                     </div>

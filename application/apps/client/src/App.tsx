@@ -36,6 +36,7 @@ export const App = () => {
 
           {/* página da iniciativa */}
           <Route path='/main' element={<InitiativePage/>}/>
+          
           <Route path='/InitiativeForms' element={<InitiativeForm/>}/>
 
           {/* página de perfil */}
