@@ -1,6 +1,6 @@
 import {Locations} from "../LocationsCarrousel/Locations"
 import { Footer } from "../Footer/Footer.js"
-import {Navbar} from "../Navbar/navbar.jsx"
+import {NavBar} from "../Navbar/navbar.jsx"
 import {TestCard} from "../TestCard/TestCard"
 import { AuthContext } from "../../contexts/auth/AuthContext.js"
 import { useContext } from "react"
@@ -11,9 +11,8 @@ export const HomePage = () => {
 
     return(
       <>  
-        <Navbar/>
+        <NavBar/>
         <div className="title1">
-            <h1>HelpCife</h1>
             {auth?.user && `Olá, ${auth?.user?.name}!`}
             <br />
             {auth?.user && <button onClick={auth.signOut}>Sair</button>}

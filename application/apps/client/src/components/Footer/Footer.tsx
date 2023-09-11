@@ -6,7 +6,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 export const Footer = () => {
   return (
 
-    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted ' style={{marginTop: '100px'}}>
+    <MDBFooter className='text-center text-lg-start text-muted ' style={{marginTop: '100px', backgroundColor: 'rgb(255, 255, 255, 0.7)'}}>
       <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom' >
         <div className='me-5 d-none d-lg-block' >
           <span>Get connected with us on social networks:</span>
@@ -108,7 +108,7 @@ export const Footer = () => {
         </MDBContainer>
       </section>
 
-      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
+      <div className='text-center p-4' style={{ backgroundColor: 'rgb(255, 255, 255, 0.7)' }}>
         © 2023 Copyright:
         <a className='text-reset fw-bold' href='https://github.com/RodBC/Projeto-Engenharia-Software'>
           HelpCife

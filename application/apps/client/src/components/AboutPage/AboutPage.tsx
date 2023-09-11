@@ -1,13 +1,12 @@
-import React from "react";
 import "./AboutPage.css";
-import {Navbar} from "../Navbar/navbar.jsx"
+import { NavBar } from "../Navbar/navbar.js";
 import { Footer } from "../Footer/Footer.js";
 
 
 export const AboutPage = () => {
     return(
         <>
-            <Navbar/>
+            <NavBar/>
             <div className="great_container">
 
                 <div className="title_div">
