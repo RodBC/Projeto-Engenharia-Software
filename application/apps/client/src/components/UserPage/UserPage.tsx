@@ -3,6 +3,8 @@ import { useContext } from 'react'
 import { AuthContext } from '../../contexts/auth/AuthContext';
 import { Carousel } from 'react-bootstrap'
 import { useState } from 'react'
+import { NavBar } from '../Navbar/navbar';
+import { Footer } from '../Footer/Footer';
 
 export const UserPage = () => {
 
@@ -10,13 +12,15 @@ export const UserPage = () => {
 
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex) => {
+  const handleSelect = (selectedIndex:number) => {
     setIndex(selectedIndex);
   };
 
   return (
+    <>
+    
     <styled.Container>
-
+    <NavBar/>
         <styled.BoxImages>
             <styled.BannerImage />
             <styled.ProfileImage src='https://via.placeholder.com/180'/>
@@ -79,7 +83,8 @@ export const UserPage = () => {
             </styled.ContainerCreatedInitiatives>
 
         </styled.InitiativesContainer>
-
+        <Footer/>
     </styled.Container>
+    </>
   )
 }

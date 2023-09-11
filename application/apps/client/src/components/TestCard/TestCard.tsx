@@ -26,8 +26,8 @@ const cardsData: CardData[] = [
     descricao: "Curado",
   },
   {
-    iniciativa: "UFPE LGBT",
-    descricao: "Várzea",
+    iniciativa: "Conde do Tiro",
+    descricao: "battle royale in boa vista",
   },
   {
     iniciativa: "Chassina amanhã",
@@ -68,14 +68,16 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
             <Card.Text>
               {data.descricao}
             </Card.Text>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <Button variant="primary">Saiba Mais</Button>
             <FontAwesomeIcon 
               icon={faHeart} 
               className="heart_button" 
               color={curtida ? 'red' : 'grey'} 
               onClick={muda_curtida}
-              style={{paddingLeft: '150px' , height: '25px'}}  
+              style={{ height: '25px', cursor: 'pointer'}}  
             />
+            </div>
           </Card.Body>
         </Card>
   );

@@ -7,7 +7,6 @@ import { BiEdit } from 'react-icons/bi'
 export const Container = styled.div`
     width: 100vw;
     height: 100vh;
-    background-color: #eee;
     overflow-x: hidden;
 `;
 

@@ -19,7 +19,7 @@ export const App = () => {
         <Route path="/home" element={<HomePage />} />
 
         {/* Página de Sobre */}
-        <Route path="/about" element={<AuthRequire><AboutPage /></AuthRequire>} />
+        <Route path="/about" element={<AboutPage />} />
 
         {/* Página de Registro */}
         <Route path="/register" element={<RegisterPage />} />

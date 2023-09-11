@@ -1,46 +1,80 @@
-import "./style.css";
-import { useRef } from "react";
-import { FaBars, FaTimes, FaSearch } from "react-icons/fa";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { AuthContext } from '../../contexts/auth/AuthContext';
+import { useContext } from 'react';
+import * as styled from './styles'
 
-export function Navbar() {
+export const NavBar = () => {
 
-	const navRef = useRef<HTMLDivElement>(null)
-	const url = "http://via.placeholder.com/50"
+	const auth = useContext(AuthContext)
 
-	const showNavbar = () => {
-		if (navRef.current){
-			navRef.current.classList.toggle("responsive_nav");
-		}
-	};
-
-	return (
-		<header>
-			<h3>LOGO</h3>
-			<div className="box_Input">
-				<input type="text"  placeholder="Pesquisar..." id="input"/>
-				<div className="btn_Search">
-					<FaSearch/>
-				</div>
-			</div>
-			<nav ref={navRef} style={{'zIndex': '99999'}}>
-
-				<a href="/home">Início</a>
-
-				<a href="/about">Sobre</a>
-
-				<a href="/contacts">Contatos</a>
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
-				</button>
-			</nav>
-			<button
-				className="nav-btn"
-				onClick={showNavbar}>
-				<FaBars />
-			</button>
-			<img src={url} className="image"/>
-		</header>
-	);
+  return (
+    <>
+      
+	  {['xl'].map((expand) => (
+        <styled.NavBar expand={expand} className=" ">
+          <Container fluid>
+            <Navbar.Brand href="#" >
+				      <span style={{fontWeight: 'bold', fontSize: '30px'}}>H</span>elpcife
+			      </Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ color: '#eee'}}>
+				      <styled.UserIcon/>
+			      </Navbar.Toggle>
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+			        style={{backgroundColor: '#eee'}}
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  HelpCife
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="/home">Início</Nav.Link>
+                  <Nav.Link href="/about">Sobre</Nav.Link>
+                  <Nav.Link href="/contact">Contatos</Nav.Link>
+                  <Nav.Link href="/UserPage">Perfil</Nav.Link>
+				 
+                  <NavDropdown
+                    title="Mais"
+                    id={`offcanvasNavbarDropdown-expand-${expand}`}
+                  >
+					          {/* Se o usuário extiver logado, permita ele acessar o recurso */}
+                    {auth?.user &&  <NavDropdown.Item href="/UserPage">Criar Iniciativa</NavDropdown.Item>}
+                    {!auth?.user &&  <NavDropdown.Item href="/login">Criar Iniciativa</NavDropdown.Item>}
+                    <NavDropdown.Item href="#action4">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+                <Form className="d-flex" >
+                  <Form.Control
+				            style={{width: '250px'}}
+                    type="search"
+                    placeholder="Buscar..."
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Buscar</Button>
+                </Form>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </styled.NavBar>
+      ))}
+    
+    </>
+  );
 }
