@@ -17,6 +17,18 @@ export class User {
     @Column()
     password: string;
 
+    @Column("text", { nullable: true })
+    description: string;
+
+    @Column("text", { nullable: true })
+    imgUrl: string;
+
+    @Column("text", { nullable: true })
+    bannerUrl: string;
+
+    @Column("text", { array: true, nullable: true })
+    socials: string[2];
+
     async validatePassword(password: string): Promise<boolean> {
         return bcrypt.compare(password, this.password);
       }
