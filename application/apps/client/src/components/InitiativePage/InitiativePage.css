@@ -1,0 +1,230 @@
+body{
+    /* height: 100vh; */
+    text-align: center;
+}
+
+#edit_button_div{
+    margin-left: 25vw;
+    margin-right:25vw;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+    #edit_button_div span{
+        background-color: white;
+        padding: 0.5rem;
+        font-weight: bold;
+    }
+
+#follow_button_div{
+    margin-left: 25vw;
+    margin-right:25vw;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+    #follow_button_div span{
+        background-color: white;
+        padding: 0.5rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+/* ---------------------------------------------------------- CAMPO DE COPIAR LINKS */ 
+
+#copy_link_div {
+    margin: 5px; /* Adjust the margin */
+    padding: 5px; /* Adjust the padding */
+    height: auto; /* Allow the height to adjust based on content */
+    margin-left: 38vw;
+    margin-right: 38vw;
+    border-radius: 0.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+#copy_text {
+    background-color: green;
+    color: white;
+    padding: 5px; /* Adjust the padding */
+    cursor: pointer;
+    border: none;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+#link_text {
+    font-weight: bold; 
+    flex: 1;
+    padding: 5px; /* Adjust the padding */
+    text-align: center;
+    background-color: white;
+
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+    
+    
+/* ----------------------------------------------------------CAMPO DO TÍTULO DA INICIATIVA:*/
+
+#ini_name{
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+
+/* ----------------------------------------------------------CAMPO DO TABBED COMPONENT:*/
+
+#tabcontainer{
+    margin-left: 25vw;
+    margin-right:25vw;
+    background-color: white;
+    height: 60vh;
+    overflow: hidden;
+}
+
+#aboutext{
+    text-align: left;
+    float: center;
+    width: 20vw;;
+    padding-top: 3vh;
+    padding-left: 0.5vw;
+}
+#locationtext{
+    text-align: left;
+    float: center;
+    padding-top: 2vh;
+    padding-left: 0.5vw;
+}
+
+#locationtext span{
+    font-size: large;
+    font-weight: bold;
+}
+
+
+#imagegrid-container {
+    width: 100%;
+    height: 70vh; /* Set a fixed height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 3vh;
+  }
+
+#imagegrid {
+    /* width: 100%; 
+    height: 100%;  */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-gap: 20px; 
+    padding: 0 5vw; 
+    padding-top: 5vh;
+    align-items: center;
+    /* overflow-y: auto;  */
+  }
+
+
+  .Ini_Images{
+      max-width: 100%;
+      max-height: 100%;
+      /* width: 300px;
+      height: 250px; */
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0%;
+      cursor: pointer;
+    }
+
+
+#followersgrid-container {
+    width: 100%;
+    height: 70vh; /* Set a fixed height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#followersgrid{
+    /* width: 100%; 
+    height: 100%;  */
+    display: grid;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    grid-gap: 35px; 
+    padding: 0 5vw; 
+    padding-top: 5vh;
+    align-items: center;
+    /* overflow-y: auto;  */
+}
+
+
+.follower_image{
+    max-width: 100%;
+    max-height: 100%;
+    /* width: 300px;
+    height: 250px; */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0%;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+#muralgrid{
+    width: 100%; 
+    height: 100%; 
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    grid-gap: 20px; 
+    padding: 0 5vw; 
+    padding-top: 2vh;
+    align-items: center;
+    overflow-y: auto;
+}
+
+    .msg_div{
+        background-color: rgb(242, 240, 240);
+        color: rgb(0, 0, 0);
+        margin-left: 5vw;
+        margin-right: 5vw;
+        border: 1px solid rgb(197, 195, 195);
+        padding: 1vh;
+        text-align: left;
+    }
+
+    #mural_text1{
+        float: center;
+        margin-left: 2rem;
+        font-size: larger;
+        font-weight: bold;
+        margin-top: 1vh;
+    }
+
+    .post_title{
+        text-align: left;
+        border-bottom: 1px solid rgb(197, 195, 195);
+        font-weight: bold;
+    }
+  
+
+  .Ini_Images:hover{
+    transform: scale(1.1);
+  }
+
+
+
+
+.follower_image:hover{
+    transform: scale(1.1);
+}
+
+#icons_div{
+    float: right;
+    padding-right: 3vw;
+    padding-top: 1vh;
+    font-size: 3.5rem;
+}
+
+.social_icons{
+    margin-right: 1.3rem;
+}
+
+/* ----------------------------------------------------------

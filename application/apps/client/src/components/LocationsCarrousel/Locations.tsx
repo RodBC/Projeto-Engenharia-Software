@@ -4,31 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import './Locations.css'
 import Carousel from 'react-bootstrap/Carousel';
 import styled from 'styled-components'
-import { TfiArrowCircleLeft, TfiArrowCircleRight } from 'react-icons/tfi';
+
 
 export const Locations = () => {
-
-
-const Iconleft = styled(TfiArrowCircleLeft)`
-&:hover {
-  color: black;
-
-}
-color: black;
-z-index: 9999;
-
-`;
-
-
-const Iconright = styled(TfiArrowCircleRight)`
-&:hover {
-  color: black;
-
-}
-color: black;
-`
-
-
 
 
 

@@ -15,7 +15,7 @@ export const HomePage = () => {
         <div className="title1">
             {auth?.user && `Olá, ${auth?.user?.name}!`}
             <br />
-            {auth?.user && <button onClick={auth.signOut}>Sair</button>}
+           
         </div>
         
         <div className="locations_buttons">
