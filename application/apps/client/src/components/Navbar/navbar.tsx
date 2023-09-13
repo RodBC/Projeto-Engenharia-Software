@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../../contexts/auth/AuthContext';
 import { useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import * as styled from './styles'
 
 export const NavBar = () => {
@@ -24,8 +24,11 @@ export const NavBar = () => {
             <Navbar.Brand href="#" >
 				      <span style={{fontWeight: 'bold', fontSize: '30px'}}>H</span>elpcife
 			      </Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ color: '#eee'}}>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} style={{ color: '#eee', height:'100%'}}>
+              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
+              <p style={{color: 'black', marginTop: '10px'}}>{auth?.user && auth?.user.name}</p>
 				      <styled.UserIcon/>
+              </div>
 			      </Navbar.Toggle>
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -57,7 +60,7 @@ export const NavBar = () => {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/">
-                    {auth?.user && <a href='/home' style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={ auth.signOut }>Sair</a>}
+                    {auth?.user && <div style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={auth.signOut}>Sair</div>}
                     {!auth?.user && <a href='/login'  style={{textDecoration: 'none', color: 'none'}}>Entrar</a>}
                     </NavDropdown.Item>
                   </NavDropdown>

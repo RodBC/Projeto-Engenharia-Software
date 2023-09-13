@@ -22,16 +22,16 @@ const cardsData: CardData[] = [
     descricao: "Nazaré da Mata",
   },
   {
-    iniciativa: "Curado saudável",
-    descricao: "Curado",
+    iniciativa: "Volta pra mim Leticia",
+    descricao: "estou sofrendo muito",
   },
   {
-    iniciativa: "Conde do Tiro",
-    descricao: "battle royale in boa vista",
+    iniciativa: "Cachorro chupetão",
+    descricao: "Compre a chupeta para o dog",
   },
   {
-    iniciativa: "Chassina amanhã",
-    descricao: "Ilha do Tiro",
+    iniciativa: "Duelo na Rua do sol",
+    descricao: "apenas armas brancas",
   },
 ];
 
@@ -63,12 +63,12 @@ const CardItem: React.FC<CardItemProps> = ({ data }) => {
         // style={{ width: '100%'}}
         <Card style={{ width: '100%', height:'100%'}}>
           <Card.Img variant="top" src={montanha} />
-          <Card.Body>
+          <Card.Body style={{display: 'flex', alignItems: 'start', flexDirection: 'column'}}>
             <Card.Title>{data.iniciativa}</Card.Title>
             <Card.Text>
               {data.descricao}
             </Card.Text>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
             <Button variant="primary">Saiba Mais</Button>
             <FontAwesomeIcon 
               icon={faHeart} 
