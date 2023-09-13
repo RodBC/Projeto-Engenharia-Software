@@ -7,11 +7,21 @@ export const Main = styled.div`
 
     /* margin-top: 2rem; */
     width: 100vw;
-    height: 92vh;
-    background-color: white;
+    height: 100vh;
+    background-color: #eee;
 
     justify-content: center;
-    /* align-items: center; */
+    align-items: start; 
+    padding-bottom: 50px;
+    padding-top: 50px;
+
+    @media (max-width: 700px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
 `;
 
 export const About = styled.textarea`

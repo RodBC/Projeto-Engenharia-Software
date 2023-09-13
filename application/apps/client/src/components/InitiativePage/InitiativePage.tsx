@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { Navbar } from '../Navbar/navbar';
+import { NavBar } from '../Navbar/navbar';
 import { Footer } from '../Footer/Footer';
 import './InitiativePage.css';
 import TestImg from '../../assets/rec_antigo.jpg'
@@ -42,7 +42,7 @@ export const InitiativePage= ()=> {
   return (
 
     <>
-      <Navbar/>
+      <NavBar/>
 
             <h2 id='ini_name'>Cachorro Chupetones</h2>
 

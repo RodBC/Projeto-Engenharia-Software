@@ -7,11 +7,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../../contexts/auth/AuthContext';
 import { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import * as styled from './styles'
 
 export const NavBar = () => {
 
 	const auth = useContext(AuthContext)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -54,8 +56,9 @@ export const NavBar = () => {
                       Another action
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
+                    <NavDropdown.Item href="/">
+                    {auth?.user && <a href='/home' style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={ auth.signOut }>Sair</a>}
+                    {!auth?.user && <a href='/login'  style={{textDecoration: 'none', color: 'none'}}>Entrar</a>}
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
