@@ -5,19 +5,31 @@ import * as bcrypt from 'bcrypt';
 @Entity()
 @Unique(["email"])
 export class User {
-    @PrimaryGeneratedColumn()
-    id: string;
+  @PrimaryGeneratedColumn()
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    email: string;
+  @Column()
+  email: string;
 
-    @Column()
-    password: string;
+  @Column()
+  password: string;
 
-    async validatePassword(password: string): Promise<boolean> {
-        return bcrypt.compare(password, this.password);
-      }
+  @Column("text", { nullable: true })
+  description: string;
+
+  @Column("text", { nullable: true })
+  imgUrl: string;
+
+  @Column("text", { nullable: true })
+  bannerUrl: string;
+
+  @Column("text", { array: true, nullable: true })
+  socials: string[];
+
+  async validatePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 }
