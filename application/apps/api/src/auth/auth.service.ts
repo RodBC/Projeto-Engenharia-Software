@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateToken(token: string): Promise<User> {
     const decoded = this.jwtService.decode(token);
@@ -32,14 +32,14 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<User> {
     const user: User = await this.usersService.findByEmail(email);
-
+    
     if (!user) return null;
-
-    if (await user.validatePassword(password)) {
-      return user;
-    } else {
+        
+    if (!(await user.validatePassword(password))) {
       throw new UnauthorizedException('Invalid password');
     }
+
+    return user;
   }
 
   async signIn(signInDto: SignInDto) {
@@ -53,7 +53,7 @@ export class AuthService {
 
     const payload = { sub: user.id, email: user.email };
 
-    return { 
+    return {
       access_token: await this.jwtService.signAsync(payload),
       user_id: user.id // Incluindo o ID do usuário no objeto retornado
     };
