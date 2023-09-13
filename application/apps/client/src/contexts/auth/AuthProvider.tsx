@@ -71,6 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       destroyCookie(null, "reactauth.user_id", { path: '/' })
       destroyCookie(null, "reactauth.token", { path: '/' })
       setUser(null);
+      window.location.reload();
     };
 
     const isAuthenticated = user !== null;

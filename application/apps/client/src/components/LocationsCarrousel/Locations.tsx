@@ -2,14 +2,9 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import './Locations.css'
-import Carousel from 'react-bootstrap/Carousel';
-import styled from 'styled-components'
 
 
 export const Locations = () => {
-
-
-
     const settings = {
       dots: true,
       infinite: true,
@@ -18,29 +13,27 @@ export const Locations = () => {
       slidesToScroll: 1,
     };
 
-
-
     return (
       <div  style={{ width: '80%', margin:'auto', marginBottom: '100px', color: 'black'}} className='Slider'>
-        <h3 style={{width: '100%', textAlign: 'center'}}>Bairros</h3>
+        <h3 style={{width: '100%', textAlign: 'center', marginTop: '30px'}}>Bairros</h3>
         <Slider {...settings} >
           <div> 
-            <p  style={{textAlign: 'center'}}>Hermano</p>
+            <p  style={{textAlign: 'center'}}>Madalena</p>
           </div>
           <div>
             <p>Varzea</p>
           </div>
           <div>
-            <p>Ilha do Tiro</p>
+            <p>Torre</p>
           </div>
           <div>
-            <p>Cabo de santo Agostinho</p>
+            <p>Ibura</p>
           </div>
           <div>
-            <p>Centro de Informática</p>
+            <p>Boa viagem</p>
           </div>
           <div>
-            <p>UFPE</p>
+            <p>Curado</p>
           </div>
         </Slider>
       </div>
