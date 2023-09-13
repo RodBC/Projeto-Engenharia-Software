@@ -1,38 +1,38 @@
-import './app_style.css'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { HomePage } from "./components/HomePage/HomePage.js"
 import { AboutPage } from "./components/AboutPage/AboutPage.js"
-// import { LoginPage } from "./components/LoginPage/LoginPage.js"
 import { LoginPage } from './components/LoginPage/LoginPage.js'
 import { RegisterPage } from "./components/RegisterPage/RegisterPage.js"
 import { AuthRequire } from './contexts/auth/AuthRequire.js'
+<<<<<<< HEAD
 import { InitiativePage } from './components/InitiativePage/InitiativePage.tsx'
 import { InitiativeForm } from './components/InitiativeForms/initiative_forms.tsx'
+=======
+import './app_style.css'
+import { UserPage } from './components/UserPage/UserPage.js'
+>>>>>>> b0c11fc2c904c40919070d971b603aa2af3ec095
 
 export const App = () => {
 
   return (
     <div className="app_background_div">
-      {/* <Navbar/> */}
       <Routes>
-          {/* Página de Início */}
-          <Route path="/home" element={<HomePage/>}/>
+        {/* Defina a rota inicial para /home */}
+        <Route path="/" element={<HomePage />} />
 
-          {/* Página de Sobre */}
-          <Route path="/about" element={<AuthRequire><AboutPage/></AuthRequire>}/>
+        {/* Página de Início */}
+        <Route path="/home" element={<HomePage />} />
 
-          {/* Página de Contatos */}
-          {/* <Route path="/contacts" element={<AboutPage/>}/> */}
+        {/* Página de Sobre */}
+        <Route path="/about" element={<AboutPage />} />
 
-          {/* Página de Usuário */}
-          {/* <Route path="/user" element={<AboutPage/>}/> */}
-          {/* Página de Iniciativas */}
+        {/* Página de Registro */}
+        <Route path="/register" element={<RegisterPage />} />
 
-          {/* página de registro */}
-          <Route path="/register" element={<RegisterPage/>}/>
+        {/* Página de Login */}
+        <Route path="/login" element={<LoginPage />} />
 
-          {/* página de login */}
-          <Route path="/login" element={<LoginPage/>}/>
+        <Route path='/UserPage' element={<AuthRequire><UserPage/></AuthRequire>} />
 
           {/* página da iniciativa */}
           <Route path='/main' element={<InitiativePage/>}/>
@@ -44,4 +44,3 @@ export const App = () => {
     </div>
   )
 }
-

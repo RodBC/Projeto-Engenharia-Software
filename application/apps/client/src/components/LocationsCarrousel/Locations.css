@@ -5,33 +5,20 @@
 }
 
 
-.sliders-container{
-    padding: 5rem;
-    color: #fff;
-}
-
-
-.slides{
-    background-color: grey;
-    white-space: nowrap; /* Impede a quebra de linha do texto */
-    text-overflow: ellipsis; /* Adiciona reticências (...) quando há overflow de texto */
-}
-
-.slides h3{
-    text-align: center;
-}
-
-.slick-slide div{
-    margin:0 1em;
+.Slider div p{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+    white-space: nowrap;
+    overflow: hidden;
     border-radius: 5px;
-    
+    box-shadow: 0 1px 3px gray;
+    background-color: rgb(255, 255, 255, 0.7); 
+    color: black;
+    cursor: pointer;
+    /* border: groove; */
 }
 
-.slick-slide .slick-active .slick-current{
-    border: 100px solid #000000;
-    width: 0%;
-    height: 0%;
-}
-
-
+/* f1b100 */
