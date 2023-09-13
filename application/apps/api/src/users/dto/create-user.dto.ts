@@ -19,4 +19,25 @@ export class CreateUserDto {
         required: true,
     })
     email: string;
+
+    @ApiProperty({
+        description: 'The image url of the user',
+        required: false,
+        nullable: true,
+    })
+    imgUrl: string;
+
+    @ApiProperty({
+        description: 'The banner url of the user',
+        required: false,
+        nullable: true,
+    })
+    bannerUrl: string;
+
+    @ApiProperty({
+        description: 'The description of the user',
+        required: false,
+        nullable: true,
+    })
+    description: string;
 }
