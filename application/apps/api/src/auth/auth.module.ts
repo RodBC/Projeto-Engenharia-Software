@@ -6,6 +6,8 @@ import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { jwtConstants } from './constants';
+import { refreshTokenProviders } from './refresh_token.provider';
+import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
   imports: [
@@ -16,8 +18,9 @@ import { jwtConstants } from './constants';
       signOptions: { expiresIn: '1h' },
     }),
     UsersModule,
+    DatabaseModule,
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [...refreshTokenProviders, AuthService, JwtStrategy],
   exports: [AuthService],
   controllers: [AuthController],
 })
