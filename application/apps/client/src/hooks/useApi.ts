@@ -87,6 +87,8 @@ export const useApi = () => ({
   createInitiative: async (
     name: string,
     description: string,
+    bairro: string,
+    icon: string | null,
     images: string | null,
     socials: string | null,
     token: string
@@ -94,7 +96,7 @@ export const useApi = () => ({
     try {
       const response = await api.post(
         `/api/initiative`,
-        { name, description, images, socials },
+        { name, description, bairro, icon, images, socials },
         {
           headers: {
             Authorization: `Bearer ${token}`,

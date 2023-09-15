@@ -6,7 +6,7 @@ export type AuthContextType = {
     signUp: (email:string, password: string, name:string) => Promise<void>
     signOut: () => void;
     updateUser: (id:number, description: string) => Promise<void>
-    createInitiative: (name:string, description:string, images:string | null, socials:string | null) => Promise<void>
+    createInitiative: (name:string, description:string, bairro:string, icon: string | null, images:string | null, socials:string | null) => Promise<void>
     getUser: (id:number) => Promise<void>
     getAllInitiatives: () => Promise<any>
     isAuthenticated: boolean;

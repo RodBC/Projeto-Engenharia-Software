@@ -1,4 +1,4 @@
-import {Locations} from "../LocationsCarrousel/Locations"
+import { Locations } from "../LocationsCarrousel/Locations.js"
 import { Footer } from "../Footer/Footer.js"
 import {NavBar} from "../Navbar/navbar.jsx"
 import {TestCard} from "../TestCard/TestCard"
@@ -11,7 +11,7 @@ export const HomePage = () => {
 
     function teste(){
         createInitiative(
-            "Python 3 vs Python 2", "India", null, null)
+            "Ajude marcelo Jota", "contabilidade", "Iputinga", null, null, null)
     }
 
     return(

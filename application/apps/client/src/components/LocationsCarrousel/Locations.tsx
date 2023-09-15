@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Locations.css';
 
-interface LocationsProps {
-  bairros: string[];
-}
 
-export const Locations: React.FC<LocationsProps> = () => {
+export const Locations = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const bairros = ['Madalena', 'Varzea', 'Torre', 'Ibura', 'Boa viagem', 'Curado'];
@@ -28,8 +25,6 @@ export const Locations: React.FC<LocationsProps> = () => {
       setSelectedItems([...selectedItems, bairro]);
     }
   };
-
-  console.log(selectedItems);
 
   return (
     <div style={{ width: '80%', margin: 'auto', marginBottom: '100px', color: 'black' }} className="Slider">

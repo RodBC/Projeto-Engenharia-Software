@@ -9,7 +9,7 @@ import { useAuth } from "../../contexts/auth/AuthContext";
 
 interface CardItemData {
   name: string;
-  description: string;
+  bairro: string;
 }
 
 export const TestCard = () => {
@@ -56,7 +56,7 @@ const CardItem = ({ data }: { data: CardItemData }) => {
         }}
       >
         <Card.Title>{data.name}</Card.Title>
-        <Card.Text>{data.description}</Card.Text>
+        <Card.Text>{data.bairro}</Card.Text>
         <div
           style={{
             display: "flex",

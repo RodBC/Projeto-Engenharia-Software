@@ -112,8 +112,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const createInitiative = async (
     name: string,
     description: string,
+    bairro: string,
+    icon: string | null,
     images: string | null,
-    socials: string | null
+    socials: string | null,
   ) => {
     const cookies = parseCookies();
     const token = cookies["reactauth.token"];
@@ -122,6 +124,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const response = await Api.createInitiative(
         name,
         description,
+        bairro,
+        icon,
         images,
         socials,
         token
