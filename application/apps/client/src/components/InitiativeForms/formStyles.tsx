@@ -1,19 +1,16 @@
 import styled from 'styled-components'
 
 export const Main = styled.div`
-    margin-top: 4em;
     display: flex;
     flex-direction: row;
 
     /* margin-top: 2rem; */
-    width: 100vw;
+    width: 50vw;
     height: 100vh;
-    background-color: #eee;
-
+    background-color: #d4c7c7;
     justify-content: center;
     align-items: start; 
-    padding-bottom: 50px;
-    padding-top: 50px;
+
 
     @media (max-width: 700px) {
         display: flex;
@@ -63,6 +60,7 @@ export const Button = styled.button`
     background-color: #852FF4;
     border:none;
     box-shadow: none;
+    margin-bottom: 80px;
 
     &:hover{
         background-color: #852FF4;

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UseGuards, Delete} from '@nestjs/common';
 import { InitiativeService } from './initiative.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateInitiativeDto } from './dto/create_initiative.dto';
@@ -51,4 +51,10 @@ export class InitiativeController {
 
         return initiative;
     }
+
+    @Delete('/deleteAll')
+    async deleteAll(): Promise<void> {
+      await this.initiativeService.deleteAll();
+    }
+  
 }
