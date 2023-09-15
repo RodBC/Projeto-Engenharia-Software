@@ -19,7 +19,7 @@ export const NavBar = () => {
     <>
       
 	  {['xl'].map((expand) => (
-        <styled.NavBar expand={expand} className=" ">
+        <styled.NavBar key={expand} expand={expand} className=" ">
           <Container fluid>
             <Navbar.Brand href="#" >
 				      <span style={{fontWeight: 'bold', fontSize: '30px'}}>H</span>elpcife

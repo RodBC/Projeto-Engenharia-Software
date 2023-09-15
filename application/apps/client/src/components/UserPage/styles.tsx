@@ -2,12 +2,54 @@ import styled from 'styled-components'
 import foto from '../../assets/rec_antigo.jpg'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { BiEdit } from 'react-icons/bi'
+import { GrClose} from 'react-icons/gr'
 
 
 export const Container = styled.div`
+    position: relative; /* Needed for stacking context */
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+
+    /* Background overlay para o efeito de desfoque */
+    &.blurred {
+      filter: blur(4px); /* Ajuste o desfoque conforme necessário */
+      opacity: 0.7; /* Ajuste a opacidade conforme necessário */
+      pointer-events: none;
+    }
+  
+`;
+
+export const ModalContainer = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d4c7c7;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    /* Define uma altura máxima e permite a rolagem vertical */
+    max-height: 85vh; /* Ajuste conforme necessário */
+    overflow-y: auto;
+
+    @media (max-width: 700px) {
+        width: 100vw;
+        max-height: 100vh;
+        display:  flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+`;
+
+export const IconClose = styled(GrClose)`
+
+    &: hover {
+        background-color: white;
+    }
 `;
 
 export const BoxImages = styled.div`
@@ -24,6 +66,7 @@ export const BannerImage = styled.div`
     height: 250px;
     background-color: black;
     background-image: url(${foto});
+
     
     @media (max-width: 700px) {
         height: 220px;

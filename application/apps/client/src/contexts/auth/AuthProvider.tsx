@@ -1,86 +1,144 @@
 import { AuthContext } from "./AuthContext";
 import { User } from "../../types/User";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useApi } from "../../hooks/useApi";
 import jwtDecode from "jwt-decode";
 
 interface DecodedToken {
-  sub: number; 
+  sub: number;
   exp: number;
   iat: number;
   email: string;
 }
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children })  => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<User | null>(null);
+  const Api = useApi();
 
-    const [user, setUser] = useState<User | null>(null);
-    const Api = useApi()
+  useEffect(() => {
+    const validateToken = async () => {
+      const cookies = parseCookies();
+      const id = cookies["reactauth.user_id"];
+      const token = cookies["reactauth.token"];
 
-    useEffect(() => {
-
-      const validateToken = async () => {
-        const cookies = parseCookies();
-        const id = cookies["reactauth.user_id"];
-        const token = cookies["reactauth.token"];
-      
-        if(token && id){
-          const response = await Api.validateToken(token, id)
-          setUser( {id: response.id, name:response.name} )
-
-        }}
-        validateToken()
-    }, [Api]); 
-    
-
-    const signIn = async (email: string, password: string) => {
-      try {
-        const response = await Api.signIn(email, password)
-
-        const access_token = response.data.access_token 
-
-        const decodedToken = jwtDecode<DecodedToken>(access_token);
-
-        setCookie(undefined, 'reactauth.token', access_token, {
-          maxAge: 60 * 60 * 1// 1 hour
-        });
-        setCookie(undefined, 'reactauth.user_id', decodedToken.sub.toString(), {
-          maxAge: 60 * 60 * 1 // 1 hour
-        });
-        setUser({ id: decodedToken.sub, name: "" });
-
-      } catch (error) {
-        console.error("Erro ao fazer login:", error);
-        throw error;
+      if (token && id) {
+        const response = await Api.validateToken(token, id);
+        setUser({ id: response.id, name: response.name, description: "" });
       }
     };
+    validateToken();
+  }, []);
 
-    const signUp = async (email:string, password:string, name:string) => {
-      try{
-        const response = await Api.signUp(email, password, name)
+  const signIn = async (email: string, password: string) => {
+    try {
+      const response = await Api.signIn(email, password);
 
-        setUser( { id: response.id , name:response.name } )
-      } catch(error){
-        console.error("Erro ao cadastrar:", error);
-        throw error;
-      }
-    };
+      const access_token = response.data.access_token;
 
-    const signOut = () => {
+      const decodedToken = jwtDecode<DecodedToken>(access_token);
 
-      destroyCookie(null, "reactauth.user_id", { path: '/' })
-      destroyCookie(null, "reactauth.token", { path: '/' })
-      setUser(null);
-      window.location.reload();
-    };
-
-    const isAuthenticated = user !== null;
-
-    return (
-      <AuthContext.Provider value={{ user, signIn, signOut, signUp, isAuthenticated }}>
-        {children}
-      </AuthContext.Provider>
-    );
+      setCookie(undefined, "reactauth.token", access_token, {
+        maxAge: 60 * 60 * 1, // 1 hour
+      });
+      setCookie(undefined, "reactauth.user_id", decodedToken.sub.toString(), {
+        maxAge: 60 * 60 * 1, // 1 hour
+      });
+      setUser({ id: decodedToken.sub, name: "", description: "" });
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      throw error;
+    }
   };
 
+  const signUp = async (email: string, password: string, name: string) => {
+    try {
+      const response = await Api.signUp(email, password, name);
 
+      console.log(response.id, response.name);
+
+      setUser({ id: response.id, name: response.name, description: "" });
+    } catch (error) {
+      console.error("Erro ao cadastrar:", error);
+      throw error;
+    }
+  };
+
+  const signOut = () => {
+    destroyCookie(null, "reactauth.user_id", { path: "/" });
+    destroyCookie(null, "reactauth.token", { path: "/" });
+    setUser(null);
+    window.location.reload();
+  };
+
+  const updateUser = async (id: number, description: string) => {
+    const cookies = parseCookies();
+    const token = cookies["reactauth.token"];
+
+    try {
+      const response = await Api.updateUser(id, description, token);
+
+      setUser({
+        id: response.data.id,
+        name: response.data.name,
+        description: response.data.description,
+      });
+    } catch (error) {
+      console.error("Erro ao atualizar usuário", error);
+      throw error;
+    }
+  };
+
+  const getUser = async (Id: number) => {
+    const cookies = parseCookies();
+    const token = cookies["reactauth.token"];
+
+    try {
+      const response = await Api.getUser(Id, token);
+
+      setUser({
+        id: response.id,
+        name: response.name,
+        description: response.description,
+      });
+    } catch (error) {
+      console.error("Erro ao obter usuário", error);
+      throw error;
+    }
+  };
+
+  const createInitiative = async(name:string, description:string, images:string, socials:string) => {
+    const cookies = parseCookies();
+    const token = cookies["reactauth.token"];
+
+    try{
+      const response = await Api.createInitiative(name, description, images, socials, token)
+      console.log(response)
+    }catch(error){
+      console.error("Erro ao chamar a api de criação:", error)
+      throw error
+    }
+    
+  }
+
+  const isAuthenticated = user !== null;
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        signIn,
+        signOut,
+        signUp,
+        updateUser,
+        getUser,
+        createInitiative,
+        isAuthenticated,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
