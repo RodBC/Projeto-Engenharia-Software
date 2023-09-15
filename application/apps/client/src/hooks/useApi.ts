@@ -87,8 +87,8 @@ export const useApi = () => ({
   createInitiative: async (
     name: string,
     description: string,
-    images: string,
-    socials: string,
+    images: string | null,
+    socials: string | null,
     token: string
   ) => {
     try {
@@ -108,4 +108,20 @@ export const useApi = () => ({
       throw error;
     }
   },
+
+  getAllInitiatives: async (token:string) => {
+    try {
+      const response = await api.get(`/api/initiative`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response;
+    } catch (error) {
+      console.error("Erro ao obter iniciativas:", error);
+      throw error;
+    }
+  },
+
 });

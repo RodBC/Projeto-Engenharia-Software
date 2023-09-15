@@ -109,19 +109,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const createInitiative = async(name:string, description:string, images:string, socials:string) => {
+  const createInitiative = async (
+    name: string,
+    description: string,
+    images: string | null,
+    socials: string | null
+  ) => {
     const cookies = parseCookies();
     const token = cookies["reactauth.token"];
 
-    try{
-      const response = await Api.createInitiative(name, description, images, socials, token)
-      console.log(response)
-    }catch(error){
-      console.error("Erro ao chamar a api de criação:", error)
-      throw error
+    try {
+      const response = await Api.createInitiative(
+        name,
+        description,
+        images,
+        socials,
+        token
+      );
+    } catch (error) {
+      console.error("Erro ao chamar a api de criação:", error);
+      throw error;
     }
-    
-  }
+  };
+
+  const getAllInitiatives = async () => {
+    const cookies = parseCookies();
+    const token = cookies["reactauth.token"];
+
+    try {
+      const response = await Api.getAllInitiatives(token)
+      return response.data
+    } catch (error) {
+      console.error("Erro ao utilizar a api de obter iniciativas", error);
+      throw error;
+    }
+  };
 
   const isAuthenticated = user !== null;
 
@@ -135,6 +157,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         updateUser,
         getUser,
         createInitiative,
+        getAllInitiatives,
         isAuthenticated,
       }}
     >
