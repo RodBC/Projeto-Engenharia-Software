@@ -12,10 +12,10 @@ export class Initiative {
     @Column()
     name: string;
 
-    @Column()
+    @Column({nullable: true})
     description: string;
 
-    @Column()
+    @Column({nullable: true})
     neighborhood: string;
 
     @Column("text", { array: true, nullable: true })
