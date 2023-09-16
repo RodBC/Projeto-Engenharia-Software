@@ -19,7 +19,7 @@ export class InitiativeService {
   }
 
   async create(createInitiativeDto: CreateInitiativeDto, owner_id: string): Promise<Initiative> {
-    const { name, description, images, bairro, icon} = createInitiativeDto;
+    const { name, description, images,} = createInitiativeDto;
 
     const initiative = new Initiative();
 
@@ -27,8 +27,8 @@ export class InitiativeService {
     initiative.description = description;
     initiative.images = images;
     initiative.ownerId = owner_id;
-    initiative.bairro = bairro;
-    initiative.icon = icon;
+    // initiative.bairro = bairro;
+    // initiative.icon = icon;
 
     return this.initiativeRepository.save(initiative);
   }
@@ -67,12 +67,12 @@ export class InitiativeService {
     if (updateInitiativeDto.socials) {
       initiative.socials = updateInitiativeDto.socials;
     }
-    if (updateInitiativeDto.bairro) {
-      initiative.bairro = updateInitiativeDto.bairro;
-    }
-    if (updateInitiativeDto.icon) {
-      initiative.icon = updateInitiativeDto.icon;
-    }
+    // if (updateInitiativeDto.bairro) {
+    //   initiative.bairro = updateInitiativeDto.bairro;
+    // }
+    // if (updateInitiativeDto.icon) {
+    //   initiative.icon = updateInitiativeDto.icon;
+    // }
 
     return this.initiativeRepository.save(initiative);
   }

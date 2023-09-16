@@ -6,20 +6,6 @@ export const api = axios.create({
 });
 
 export const useApi = () => ({
-  validateToken: async (token: string, id: string) => {
-    try {
-      const response = await api.get(`api/user/?userId=${Number(id)}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao validar token:", error);
-      throw error;
-    }
-  },
 
   signIn: async (email: string, password: string) => {
     try {
@@ -49,6 +35,32 @@ export const useApi = () => ({
       throw error;
     }
   },
+
+  logOut: async () => {
+    try {
+      const response = await api.post("/api/auth/logout");
+      if (response.status === 200){
+
+      }
+      else {
+        console.error("Logout falhou: status de resposta não é 200");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  },
+
+  getAllInitiatives: async () => {
+    try {
+      const response = await api.get(`/api/initiative`);
+
+      return response;
+    } catch (error) {
+      console.error("Erro ao obter iniciativas:", error);
+      throw error;
+    }
+  },
+  
 
   updateUser: async (userId: number, imgUrl: string, description:string, bannerUrl:string, token: string) => {
     try {
@@ -111,19 +123,6 @@ export const useApi = () => ({
     }
   },
 
-  getAllInitiatives: async (token:string) => {
-    try {
-      const response = await api.get(`/api/initiative`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response;
-    } catch (error) {
-      console.error("Erro ao obter iniciativas:", error);
-      throw error;
-    }
-  },
+ 
 
 });

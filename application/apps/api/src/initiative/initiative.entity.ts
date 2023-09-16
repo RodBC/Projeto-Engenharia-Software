@@ -15,8 +15,8 @@ export class Initiative {
     @Column()
     description: string;
 
-    @Column()
-    bairro: string;
+    // @Column()
+    // bairro: string;
 
     @Column("text", { array: true, nullable: true })
     images: string[];
@@ -24,6 +24,6 @@ export class Initiative {
     @Column("text", { array: true, nullable: true })
     socials: string[];
 
-    @Column({ nullable: true })
-    icon: string;
+    // @Column({ nullable: true })
+    // icon: string;
 }

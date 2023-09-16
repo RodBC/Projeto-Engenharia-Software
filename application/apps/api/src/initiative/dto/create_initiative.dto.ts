@@ -21,16 +21,16 @@ export class CreateInitiativeDto {
     })
     images: string[];
 
-    @ApiProperty({
-        description: 'The bairro of the initiative',
-        required: true,
-    })
-    bairro: string;
+    // @ApiProperty({
+    //     description: 'The bairro of the initiative',
+    //     required: true,
+    // })
+    // bairro: string;
 
-    @ApiProperty({
-        description: 'The icon of the initiative',
-        required: false,
-        nullable: true,
-    })
-    icon: string;
+    // @ApiProperty({
+    //     description: 'The icon of the initiative',
+    //     required: false,
+    //     nullable: true,
+    // })
+    // icon: string;
 }

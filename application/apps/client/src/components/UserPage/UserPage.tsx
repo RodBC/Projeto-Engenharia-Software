@@ -9,12 +9,14 @@ import { InitiativeForm } from "../InitiativeForms/initiative_forms";
 
 export const UserPage = () => {
   const auth = useContext(AuthContext);
-  const { getUser } = useAuth();
+  // const { getUser } = useAuth();
 
-  useEffect(() => {
-    // Chama getUser apenas uma vez quando o componente é montado
-    getUser(auth?.user?.id);
-  }, []);
+  // useEffect(() => {
+  //   // Chama getUser apenas uma vez quando o componente é montado
+  //   getUser(auth?.user?.id);
+  // }, []);
+
+  console.log("entrou")
 
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -49,8 +51,8 @@ export const UserPage = () => {
       <styled.Container className={showModal ? "blurred" : ""}>
         <NavBar />
         <styled.BoxImages>
-          <styled.BannerImage style={{backgroundImage: `url(${auth?.user?.bannerUrl})`}}/>
-          <styled.ProfileImage src={auth?.user?.imgUrl} />
+          {/* <styled.BannerImage style={{backgroundImage: `url(${auth?.user?.bannerUrl})`}}/> */}
+          {/* <styled.ProfileImage src={auth?.user?.imgUrl} /> */}
           <styled.BoxInfos>
             <styled.BoxHidden>
               <styled.EditButton onClick={toggleModal}>
@@ -58,7 +60,7 @@ export const UserPage = () => {
               </styled.EditButton>
             </styled.BoxHidden>
             <styled.TextName>
-              {auth?.user && `${auth?.user?.name}`}
+              {/* {auth?.user && `${auth?.user?.name}`} */}
             </styled.TextName>
             <styled.BoxIcons>
               <styled.FacebookIcon />
@@ -75,7 +77,7 @@ export const UserPage = () => {
             </div>
             <hr />
             <styled.AboutText>
-              {auth?.user && auth?.user.description}
+              {/* {auth?.user && auth?.user.description} */}
             </styled.AboutText>
           </styled.AboutTextContainer>
         </styled.AboutContainer>

@@ -60,7 +60,7 @@ export const NavBar = () => {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/">
-                    {auth?.user && <div style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={auth.signOut}>Sair</div>}
+                    {auth?.user && <div style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={auth.logOut}>Sair</div>}
                     {!auth?.user && <a href='/login'  style={{textDecoration: 'none', color: 'none'}}>Entrar</a>}
                     </NavDropdown.Item>
                   </NavDropdown>
