@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (token && id) {
         const response = await Api.validateToken(token, id);
-        setUser({ id: response.id, name: response.name, description: "" });
+        setUser({ id: response.id, name: response.name, description: "", imgUrl: "" });
       }
     };
     validateToken();
@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setCookie(undefined, "reactauth.user_id", decodedToken.sub.toString(), {
         maxAge: 60 * 60 * 1, // 1 hour
       });
-      setUser({ id: decodedToken.sub, name: "", description: "" });
+      setUser({ id: decodedToken.sub, name: "", description: "", imgUrl: ""});
     } catch (error) {
       console.error("Erro ao fazer login:", error);
       throw error;
@@ -59,7 +59,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       console.log(response.id, response.name);
 
-      setUser({ id: response.id, name: response.name, description: "" });
+      setUser({ id: response.id, name: response.name, description: "", imgUrl: ""});
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       throw error;
@@ -73,17 +73,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     window.location.reload();
   };
 
-  const updateUser = async (id: number, description: string) => {
+  const updateUser = async (id: number, imgUrl: string, description:string, bannerUrl:string) => {
     const cookies = parseCookies();
     const token = cookies["reactauth.token"];
 
     try {
-      const response = await Api.updateUser(id, description, token);
+      const response = await Api.updateUser(id, imgUrl, description, bannerUrl, token);
 
       setUser({
         id: response.data.id,
         name: response.data.name,
         description: response.data.description,
+        imgUrl: response.data.imgUrl,
+        bannerUrl: response.data.bannerUrl
       });
     } catch (error) {
       console.error("Erro ao atualizar usuário", error);
@@ -102,6 +104,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         id: response.id,
         name: response.name,
         description: response.description,
+        imgUrl: response.imgUrl,
+        bannerUrl: response.bannerUrl
       });
     } catch (error) {
       console.error("Erro ao obter usuário", error);

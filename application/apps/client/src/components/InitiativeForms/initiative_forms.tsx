@@ -5,64 +5,69 @@ import { useState } from "react";
 import { AiFillInstagram, AiFillTwitterCircle } from "react-icons/ai";
 import { AuthContext, useAuth } from "../../contexts/auth/AuthContext.tsx";
 import { useContext } from "react";
-import { showAutoCloseAlert } from "../Alert/Alert.tsx";
-
+// import { showAutoCloseAlert } from "../Alert/Alert.tsx";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase/firebase";
+import { v4 } from "uuid";
 
 export const InitiativeForm = () => {
+  //  --------------------firebase-config--------------------------
+
   const { updateUser } = useAuth();
   const auth = useContext(AuthContext);
-
-  const [selectedImage, setSelectedImage] = useState<string | ArrayBuffer | null>(null);
   const [textarea, setTextArea] = useState("");
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageBanner, setImageBanner] = useState(null);
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result;
-        if (result) {
-          setSelectedImage(result as string | ArrayBuffer | null);
-        }
-      };
-      reader.readAsDataURL(file);
+  const uploadFileIcon = async () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(
+      storage,
+      `images/user/icon/${imageUpload.name + v4()}`
+    );
+
+    if (imageBanner == null) return;
+    const imageRef2 = ref(
+      storage,
+      `images/user/banner/${imageBanner.name + v4()}`
+    );
+    
+    try {
+      // Upload the image and get the URL
+      const snapshot = await uploadBytes(imageRef, imageUpload);
+      const snapshot2 = await uploadBytes(imageRef2, imageBanner);
+
+      const url = await getDownloadURL(snapshot.ref);
+      const url2 = await getDownloadURL(snapshot2.ref);
+
+      // Now, call updateUser with the updated imageUrls
+      updateUser(auth?.user?.id, url, textarea, url2);
+    } catch (error) {
+      console.error("Error uploading image:", error);
     }
-  };
-
-  const onSubmit = async () => {
-    await loading();
-    await updateUser(Number(auth?.user?.id), textarea);
-  };
-
-  const loading = async () => {
-    await showAutoCloseAlert("Atualizando perfil...");
-    window.location.reload();
   };
 
   return (
     <>
       <Main>
         <div>
-          <UserImg
-            src={
-              typeof selectedImage === "string"
-                ? selectedImage
-                : "https://via.placeholder.com/180"
-            }
-            alt="Selected"
-          />
-        </div>
-
-        <div>
-          <Form.Group controlId="formFile" className="mb-3">
-            <Form.Control
+          <Form.Group controlId="formFile" style={{display: 'flex', flexDirection: 'column', marginBottom: '15px'}}>
+            <input
               type="file"
-              accept="image/*"
-              onChange={handleImageChange}
+              title="Selecione uma imagem para o perfil"
+              onChange={(event) => {
+                setImageUpload(event.target.files[0]);
+              }}
+             
+            />
+            <input style={{ marginTop: '15px'}}
+              type="file"
+              onChange={(event) => {
+                setImageBanner(event.target.files[0]);
+              }}
             />
           </Form.Group>
-
           <div
             style={{
               display: "flex",
@@ -115,7 +120,7 @@ export const InitiativeForm = () => {
             </div>
           </div>
 
-          <Button className="btn btn-primary" onClick={onSubmit}>
+          <Button className="btn btn-primary" onClick={uploadFileIcon}>
             Prosseguir
           </Button>
         </div>

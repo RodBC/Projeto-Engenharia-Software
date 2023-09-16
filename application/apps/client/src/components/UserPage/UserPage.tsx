@@ -1,5 +1,5 @@
 import * as styled from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext, useAuth } from "../../contexts/auth/AuthContext";
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
@@ -11,7 +11,10 @@ export const UserPage = () => {
   const auth = useContext(AuthContext);
   const { getUser } = useAuth();
 
-  getUser(Number(auth?.user?.id));
+  useEffect(() => {
+    // Chama getUser apenas uma vez quando o componente é montado
+    getUser(auth?.user?.id);
+  }, []);
 
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -46,8 +49,8 @@ export const UserPage = () => {
       <styled.Container className={showModal ? "blurred" : ""}>
         <NavBar />
         <styled.BoxImages>
-          <styled.BannerImage />
-          <styled.ProfileImage src="https://via.placeholder.com/180" />
+          <styled.BannerImage style={{backgroundImage: `url(${auth?.user?.bannerUrl})`}}/>
+          <styled.ProfileImage src={auth?.user?.imgUrl} />
           <styled.BoxInfos>
             <styled.BoxHidden>
               <styled.EditButton onClick={toggleModal}>
@@ -72,7 +75,7 @@ export const UserPage = () => {
             </div>
             <hr />
             <styled.AboutText>
-              {auth?.user && auth?.user?.description}
+              {auth?.user && auth?.user.description}
             </styled.AboutText>
           </styled.AboutTextContainer>
         </styled.AboutContainer>

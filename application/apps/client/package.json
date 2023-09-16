@@ -14,6 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.1",
+    "firebase": "^10.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "mdb-react-ui-kit": "^6.2.0",
@@ -31,12 +32,14 @@
     "sort-by": "^1.2.0",
     "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.27",
-    "sweetalert2-react-content": "^5.0.7"
+    "sweetalert2-react-content": "^5.0.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@types/react-slick": "^0.23.10",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.1",

@@ -50,11 +50,11 @@ export const useApi = () => ({
     }
   },
 
-  updateUser: async (userId: number, description: string, token: string) => {
+  updateUser: async (userId: number, imgUrl: string, description:string, bannerUrl:string, token: string) => {
     try {
       const response = await api.put(
         `/api/user/update/?userId=${userId}`,
-        { description },
+        { imgUrl, description, bannerUrl },
         {
           headers: {
             Authorization: `Bearer ${token}`,
