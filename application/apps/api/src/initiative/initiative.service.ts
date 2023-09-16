@@ -14,8 +14,12 @@ export class InitiativeService {
   ) {
   }
 
+  async deleteAll(): Promise<void> {
+    await this.initiativeRepository.clear(); // Isso apagará todas as entradas na tabela Initiative.
+  }
+
   async create(createInitiativeDto: CreateInitiativeDto, owner_id: string): Promise<Initiative> {
-    const { name, description, images } = createInitiativeDto;
+    const { name, description, images, bairro, icon} = createInitiativeDto;
 
     const initiative = new Initiative();
 
@@ -23,6 +27,8 @@ export class InitiativeService {
     initiative.description = description;
     initiative.images = images;
     initiative.ownerId = owner_id;
+    initiative.bairro = bairro;
+    initiative.icon = icon;
 
     return this.initiativeRepository.save(initiative);
   }
@@ -60,6 +66,12 @@ export class InitiativeService {
     }
     if (updateInitiativeDto.socials) {
       initiative.socials = updateInitiativeDto.socials;
+    }
+    if (updateInitiativeDto.bairro) {
+      initiative.bairro = updateInitiativeDto.bairro;
+    }
+    if (updateInitiativeDto.icon) {
+      initiative.icon = updateInitiativeDto.icon;
     }
 
     return this.initiativeRepository.save(initiative);

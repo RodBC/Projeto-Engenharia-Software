@@ -29,4 +29,18 @@ export class UpdateInitiativeDto {
         nullable: true,
     })
     socials: string[];
+
+    @ApiProperty({
+        description: 'The socials of the initiative',
+        required: false,
+        nullable: true,
+    })
+    bairro: string;
+
+    @ApiProperty({
+        description: 'The icon of the initiative',
+        required: false,
+        nullable: true,
+    })
+    icon: string;
 }

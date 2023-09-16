@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, Req, UseGuards, Delete } from '@nestjs/common';
 import { InitiativeService } from './initiative.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateInitiativeDto } from './dto/create_initiative.dto';
@@ -47,4 +47,10 @@ export class InitiativeController {
     async findOne(@Param('id') id: string) {
         return await this.initiativeService.findOneById(id);
     }
+
+    @Delete('/deleteAll')
+    async deleteAll(): Promise<void> {
+      await this.initiativeService.deleteAll();
+    }
+  
 }

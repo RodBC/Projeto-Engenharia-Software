@@ -15,9 +15,15 @@ export class Initiative {
     @Column()
     description: string;
 
+    @Column()
+    bairro: string;
+
     @Column("text", { array: true, nullable: true })
     images: string[];
 
     @Column("text", { array: true, nullable: true })
     socials: string[];
+
+    @Column({ nullable: true })
+    icon: string;
 }

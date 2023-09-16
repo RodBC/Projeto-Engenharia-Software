@@ -1,22 +1,24 @@
-import {Locations} from "../LocationsCarrousel/Locations"
+import { Locations } from "../LocationsCarrousel/Locations.js"
 import { Footer } from "../Footer/Footer.js"
 import {NavBar} from "../Navbar/navbar.jsx"
 import {TestCard} from "../TestCard/TestCard"
-import { AuthContext } from "../../contexts/auth/AuthContext.js"
-import { useContext } from "react"
 import './HomePage.css'
+import { useAuth } from "../../contexts/auth/AuthContext.js"
 
 export const HomePage = () => {
-    const auth = useContext(AuthContext)
+
+    const { createInitiative } = useAuth()
+
+    function teste(){
+        createInitiative(
+            "Ajude marcelo Jota", "contabilidade", "Iputinga", null, null, null)
+    }
 
     return(
       <>  
         <NavBar/>
-        <div className="title1">
-            {auth?.user && `Olá, ${auth?.user?.name}!`}
-            <br />
-           
-        </div>
+
+        <button onClick={teste}>Criar Iniciativa</button>
         
         <div className="locations_buttons">
             <Locations/>
