@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post, Req, UseGuards, Delete} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, Req, UseGuards, Delete } from '@nestjs/common';
 import { InitiativeService } from './initiative.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateInitiativeDto } from './dto/create_initiative.dto';
@@ -8,48 +8,44 @@ import { OwnerGuard } from 'src/auth/owner.guard';
 import { Initiative } from './initiative.entity';
 import { UpdateInitiativeDto } from './dto/update_initiative.dto';
 import { InitiativeOwnerGuard } from './initiative_owner.guard';
+import { UserId } from 'src/auth/userId.decorator';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('initiative')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(JwtAuthGuard)
 export class InitiativeController {
     constructor(private readonly initiativeService: InitiativeService) { }
 
     @Get('/')
+    @Public()
     async findAll() {
         const initiatives = await this.initiativeService.findAll();
 
         return initiatives;
     }
 
-    @Get('/own/')
-    async findAllOwnedByUserId(@Req() request) {
-        const user = request.user;
-        const initiatives = await this.initiativeService.findAllOwnedByUserId(user.sub);
-
-        return initiatives;
+    @Get('/own')
+    @Public()
+    async findAllOwnedByUserId(@Query('userId') userId:string) {
+        return await this.initiativeService.findAllOwnedByUserId(userId);
     }
 
     @Post('/')
-    async create(@Body() createInitiativeDto: CreateInitiativeDto, @Req() request: Request) {
-        const user = (request as any).user;
-        const initiative = await this.initiativeService.create(createInitiativeDto, user.sub);
-
-        return initiative;
+    async create(@UserId() userId, @Body() createInitiativeDto: CreateInitiativeDto) {
+        return await this.initiativeService.create(createInitiativeDto, userId);
     }
 
     @UseGuards(InitiativeOwnerGuard)
-    @Post('/update/:id')
+    @Put('/:id')
     async update(@Req() req, @Body() updateInitiative: UpdateInitiativeDto) {
-        const initiative = req.initiative;
-        const initiative_updated = await this.initiativeService.update(initiative, updateInitiative);
-        return initiative_updated;
+        return await this.initiativeService.update(req.initiative, updateInitiative);
     }
 
     @Get('/:id')
+    @Public()
     async findOne(@Param('id') id: string) {
-        const initiative = await this.initiativeService.findOneById(id);
-
-        return initiative;
+        return await this.initiativeService.findOneById(id);
     }
 
     @Delete('/deleteAll')

@@ -4,15 +4,18 @@ import { UsersService } from './users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { OwnerGuard } from '../auth/owner.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserId } from 'src/auth/userId.decorator';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { Public } from 'src/auth/public.decorator';
 // import { UserInterface } from "./user.model";
 
 @Controller('user')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Get('/')
-  @UseGuards(OwnerGuard)
+  @Public()
   async findOne(@Query('userId') userId: string) {
     if (!userId) {
       return;
@@ -27,7 +30,7 @@ export class UsersController {
   }
 
   @Get('/email')
-  @UseGuards(OwnerGuard)
+  @Public()
   async findByEmail(@Query('email') email: string) {
     if (!email) {
       return;
@@ -43,7 +46,7 @@ export class UsersController {
 
   @Put('/update')
   @UseGuards(OwnerGuard)
-  async update(@Query('userId') userId: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@UserId() userId, @Body() updateUserDto: UpdateUserDto) {
     const user = await this.usersService.update(userId, updateUserDto);
 
     // remover password do user se ele existir
@@ -55,10 +58,10 @@ export class UsersController {
     return user;
   }
 
-  @Post('/updatePassword')
+  @Put('/updatePassword')
   @UseGuards(OwnerGuard)
   async updatePassword(
-    @Query('userId') userId: string,
+    @UserId() userId,
     @Body('old_password') old_password: string,
     @Body('new_password') new_password: string,
   ) {
@@ -78,6 +81,7 @@ export class UsersController {
   }
 
   @Get('/all')
+  @Public()
   async findAll() {
     const users = await this.usersService.findAll();
 
