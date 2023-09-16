@@ -5,6 +5,7 @@ import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { SignInDto } from '../users/dto/sign_in.dto';
 import { Request, Response } from 'express';
+import { User } from 'src/users/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -13,23 +14,28 @@ export class AuthController {
     private readonly usersService: UsersService,
   ) { }
 
-  @Post('sign-up')
+  @Post('/sign-up')
   async signUp(@Body() registerUserDto: CreateUserDto) {
-    return this.usersService.create(registerUserDto);
+    const user : User = await this.usersService.create(registerUserDto);
+    delete user.password;
+
+    return user
   }
 
-  @Post('sign-in')
+  @Post('/sign-in')
   async signIn(@Body() signInDto: SignInDto, @Res() res: Response) {
-    const { user_id, access_token, refresh_token } =
+    const { user, access_token, refresh_token } =
       await this.authService.signIn(signInDto);
 
     res.cookie('jwt', access_token, { httpOnly: true });
     res.cookie('refreshToken', refresh_token, { httpOnly: true });
 
-    return res.status(200).send({ user_id });
+    delete user.password;
+
+    return res.status(200).send(user);
   }
 
-  @Post('refresh')
+  @Post('/refresh')
   async refreshToken(@Req() request: Request, @Body() refreshTokenDto: { userId: string }, @Res() res: Response) {
     const refreshToken = request.cookies['refreshToken'];
 
@@ -52,7 +58,7 @@ export class AuthController {
     res.status(200).send();
   }
 
-  @Get('logout')
+  @Get('/logout')
   async logout(@Res() res: Response) {
     res.clearCookie('jwt');
     res.clearCookie('refreshToken');

@@ -8,6 +8,8 @@ import { AuthService } from './auth.service';
 import { jwtConstants } from './constants';
 import { refreshTokenProviders } from './refresh_token.provider';
 import { DatabaseModule } from 'src/database/database.module';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { Reflector } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -20,7 +22,13 @@ import { DatabaseModule } from 'src/database/database.module';
     UsersModule,
     DatabaseModule,
   ],
-  providers: [...refreshTokenProviders, AuthService, JwtStrategy],
+  providers: [
+    ...refreshTokenProviders,
+    AuthService,
+    JwtStrategy,
+    JwtAuthGuard,
+    Reflector,
+  ],
   exports: [AuthService],
   controllers: [AuthController],
 })

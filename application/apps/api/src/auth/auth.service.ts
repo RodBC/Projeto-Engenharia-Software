@@ -61,10 +61,12 @@ export class AuthService {
   async validateUser(email: string, password: string): Promise<User> {
     const user: User = await this.usersService.findByEmail(email);
 
-    if (!user) return null;
+    if (!user){
+      throw new UnauthorizedException('Invalid credentials');
+    };
 
     if (!(await user.validatePassword(password))) {
-      throw new UnauthorizedException('Invalid password');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     return user;
@@ -81,14 +83,10 @@ export class AuthService {
 
     const user = await this.validateUser(email, password);
 
-    if (!user) {
-      throw new UnauthorizedException('Invalid email');
-    }
-
     return {
       access_token: await this.createJwtToken(user),
       refresh_token: await this.createRefreshToken(user.id),
-      user_id: user.id // Incluindo o ID do usuário no objeto retornado
+      user: user
     };
   }
 }
