@@ -4,6 +4,7 @@ import { setCookie, parseCookies, destroyCookie } from "nookies";
 import { useState, useEffect } from "react";
 import { useApi } from "../../hooks/useApi";
 import jwtDecode from "jwt-decode";
+import { Initiative } from "../../types/Initiatives";
 
 interface DecodedToken {
   sub: number;
@@ -16,6 +17,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [initiative, setInitiative] = useState<Initiative | null>({
+    AllInitiatives: [],
+  });
+
   const Api = useApi();
 
   useEffect(() => {
@@ -26,7 +31,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (token && id) {
         const response = await Api.validateToken(token, id);
-        setUser({ id: response.id, name: response.name, description: "", imgUrl: "" });
+        setUser({
+          id: response.id,
+          name: response.name,
+          description: "",
+          imgUrl: "",
+          bannerUrl: "",
+        });
       }
     };
     validateToken();
@@ -46,7 +57,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setCookie(undefined, "reactauth.user_id", decodedToken.sub.toString(), {
         maxAge: 60 * 60 * 1, // 1 hour
       });
-      setUser({ id: decodedToken.sub, name: "", description: "", imgUrl: ""});
+      setUser({
+        id: decodedToken.sub,
+        name: "",
+        description: "",
+        imgUrl: "",
+        bannerUrl: "",
+      });
     } catch (error) {
       console.error("Erro ao fazer login:", error);
       throw error;
@@ -59,7 +76,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       console.log(response.id, response.name);
 
-      setUser({ id: response.id, name: response.name, description: "", imgUrl: ""});
+      setUser({
+        id: response.id,
+        name: response.name,
+        description: "",
+        imgUrl: "",
+        bannerUrl: "",
+      });
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       throw error;
@@ -73,19 +96,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     window.location.reload();
   };
 
-  const updateUser = async (id: number, imgUrl: string, description:string, bannerUrl:string) => {
+  const updateUser = async (
+    id: number,
+    imgUrl: string,
+    description: string,
+    bannerUrl: string
+  ) => {
     const cookies = parseCookies();
     const token = cookies["reactauth.token"];
 
     try {
-      const response = await Api.updateUser(id, imgUrl, description, bannerUrl, token);
+      const response = await Api.updateUser(
+        id,
+        imgUrl,
+        description,
+        bannerUrl,
+        token
+      );
 
       setUser({
         id: response.data.id,
         name: response.data.name,
         description: response.data.description,
         imgUrl: response.data.imgUrl,
-        bannerUrl: response.data.bannerUrl
+        bannerUrl: response.data.bannerUrl,
       });
     } catch (error) {
       console.error("Erro ao atualizar usuário", error);
@@ -105,7 +139,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         name: response.name,
         description: response.description,
         imgUrl: response.imgUrl,
-        bannerUrl: response.bannerUrl
+        bannerUrl: response.bannerUrl,
       });
     } catch (error) {
       console.error("Erro ao obter usuário", error);
@@ -119,7 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     bairro: string,
     icon: string | null,
     images: string | null,
-    socials: string | null,
+    socials: string | null
   ) => {
     const cookies = parseCookies();
     const token = cookies["reactauth.token"];
@@ -145,8 +179,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const token = cookies["reactauth.token"];
 
     try {
-      const response = await Api.getAllInitiatives(token)
-      return response.data
+      const response = await Api.getAllInitiatives(token);
+      setInitiative({ AllInitiatives: response.data });
+      return response.data;
     } catch (error) {
       console.error("Erro ao utilizar a api de obter iniciativas", error);
       throw error;
@@ -158,6 +193,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <AuthContext.Provider
       value={{
+        initiative,
         user,
         signIn,
         signOut,

@@ -8,7 +8,6 @@ import './app_style.css'
 import { UserPage } from './components/UserPage/UserPage.js'
 import { InitiativePage } from './components/InitiativePage/InitiativePage.tsx'
 import { InitiativeForm } from './components/InitiativeForms/initiative_forms.tsx'
-import { Teste } from './components/Teste/Teste.tsx'
 
 export const App = () => {
 
@@ -36,9 +35,7 @@ export const App = () => {
           <Route path='/main' element={<InitiativePage/>}/>
           
           <Route path='/InitiativeForms' element={<InitiativeForm/>}/>
-
-          {/* página de perfil */}
-          <Route path='/teste' element={<Teste/>}/>
+          
       </Routes>
     </div>
   )
