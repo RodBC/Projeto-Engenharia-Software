@@ -18,6 +18,7 @@ export class CreateInitiativeDto {
         description: 'The images of the initiative',
         required: false,
         nullable: true,
+        isArray: true,
     })
     images: string[];
 
@@ -25,7 +26,7 @@ export class CreateInitiativeDto {
         description: 'The bairro of the initiative',
         required: true,
     })
-    bairro: string;
+    neighborhood: string;
 
     @ApiProperty({
         description: 'The icon of the initiative',
@@ -33,4 +34,12 @@ export class CreateInitiativeDto {
         nullable: true,
     })
     icon: string;
+
+    @ApiProperty({
+        description: 'The socials of the initiative',
+        required: false,
+        nullable: true,
+        isArray: true,
+    })
+    socials: string[];
 }

@@ -16,7 +16,7 @@ export class Initiative {
     description: string;
 
     @Column()
-    bairro: string;
+    neighborhood: string;
 
     @Column("text", { array: true, nullable: true })
     images: string[];
