@@ -3,8 +3,9 @@
     "turbo": "^1.10.7"
   },
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev && npx turbo daemon clean",
     "build": "turbo run build"
+
   },
   "workspaces": [
     "apps/*"

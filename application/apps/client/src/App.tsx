@@ -9,6 +9,8 @@ import { UserPage } from './components/UserPage/UserPage.js'
 import { InitiativePage } from './components/InitiativePage/InitiativePage.tsx'
 import { InitiativeForm } from './components/InitiativeForms/initiative_forms.tsx'
 
+import { NavBar } from './components/Navbar/navbar.tsx'
+
 export const App = () => {
 
   return (
@@ -37,6 +39,11 @@ export const App = () => {
           <Route path='/InitiativeForms' element={<InitiativeForm/>}/>
 
           {/* página de perfil */}
+
+          {/* testando navbar */}
+
+          <Route path='/navbar' element={<NavBar/>}/>
+          
       </Routes>
     </div>
   )
