@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { SignInDto } from '../users/dto/sign_in.dto';
 import { Request, Response } from 'express';
 import { User } from 'src/users/user.entity';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { UserId } from './userId.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -16,7 +18,7 @@ export class AuthController {
 
   @Post('/sign-up')
   async signUp(@Body() registerUserDto: CreateUserDto) {
-    const user : User = await this.usersService.create(registerUserDto);
+    const user: User = await this.usersService.create(registerUserDto);
     delete user.password;
 
     return user
@@ -36,6 +38,7 @@ export class AuthController {
   }
 
   @Post('/refresh')
+  @UseGuards(JwtAuthGuard)
   async refreshToken(@Req() request: Request, @Body() refreshTokenDto: { userId: string }, @Res() res: Response) {
     const refreshToken = request.cookies['refreshToken'];
 
@@ -59,10 +62,17 @@ export class AuthController {
   }
 
   @Get('/logout')
+  @UseGuards(JwtAuthGuard)
   async logout(@Res() res: Response) {
     res.clearCookie('jwt');
     res.clearCookie('refreshToken');
 
     return res.status(200).send();
+  }
+
+  @Get('/check')
+  @UseGuards(JwtAuthGuard)
+  async check(@UserId() userId: string, @Res() res: Response) {
+    res.status(200).send({ userId });
   }
 }

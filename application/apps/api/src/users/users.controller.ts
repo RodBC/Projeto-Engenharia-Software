@@ -45,7 +45,7 @@ export class UsersController {
   }
 
   @Put('/update')
-  @UseGuards(OwnerGuard)
+  // @UseGuards(OwnerGuard)
   async update(@UserId() userId, @Body() updateUserDto: UpdateUserDto) {
     const user = await this.usersService.update(userId, updateUserDto);
 
@@ -59,7 +59,7 @@ export class UsersController {
   }
 
   @Put('/updatePassword')
-  @UseGuards(OwnerGuard)
+  // @UseGuards(OwnerGuard)
   async updatePassword(
     @UserId() userId,
     @Body('old_password') old_password: string,
