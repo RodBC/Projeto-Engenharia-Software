@@ -1,6 +1,9 @@
 // api.ts
 import axios from "axios";
 
+// axios.defaults.withCredentials = true
+
+
 export const api = axios.create({
   baseURL: "http://localhost:3000", // Coloque a URL correta do seu backend
 });
@@ -62,17 +65,9 @@ export const useApi = () => ({
   },
   
 
-  updateUser: async (userId: number, imgUrl: string, description:string, bannerUrl:string, token: string) => {
+  update: async () => {
     try {
-      const response = await api.put(
-        `/api/user/update/?userId=${userId}`,
-        { imgUrl, description, bannerUrl },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.put(`/api/user/update`);
 
       return response;
     } catch (error) {
@@ -81,13 +76,9 @@ export const useApi = () => ({
     }
   },
 
-  getUser: async (id: number, token: string) => {
+  getUser: async (id: number) => {
     try {
-      const response = await api.get(`api/user/?userId=${Number(id)}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get(`api/user/?userId=${Number(id)}`);
 
       return response.data;
     } catch (error) {
@@ -103,17 +94,12 @@ export const useApi = () => ({
     icon: string | null,
     images: string | null,
     socials: string | null,
-    token: string
   ) => {
     try {
       const response = await api.post(
         `/api/initiative`,
         { name, description, bairro, icon, images, socials },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+    
       );
 
       return response;

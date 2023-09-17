@@ -12,18 +12,20 @@ import "./TestCard.css";
 import "../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export const TestCard = () => {
-
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [initiatives, setInitiatives] = useState([]);
-  const { getAllInitiatives } = useAuth()
+  const [isLoading, setIsLoading] = useState(true);
+  const { getAllInitiatives } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllInitiatives();
         setInitiatives(response);
+        setIsLoading(false);
       } catch (error) {
         console.error("Erro ao buscar iniciativas:", error);
+        setIsLoading(false);
       }
     };
 
@@ -38,37 +40,59 @@ export const TestCard = () => {
     slidesToScroll: 1,
   };
 
-  const toggleItem = (item: any) => { 
-    if (selectedItems.some((selectedItem) => selectedItem.bairro === item.bairro)) {
-      setSelectedItems(selectedItems.filter((selectedItem) => selectedItem.bairro !== item.bairro));
+  const toggleItem = (item: any) => {
+    if (selectedItems.some((selectedItem) => selectedItem === item)) {
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
     } else {
       setSelectedItems([...selectedItems, item]);
     }
   };
 
+  const neighborhoods = initiatives.map((item) => item.neighborhood);
+  const uniqueNeighborhoods = [...new Set(neighborhoods)];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column'}}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="locations_buttons">
-        <div style={{width: "80%", margin: "auto", marginBottom: "100px", color: "black",}} className="Slider">
+        <div
+          style={{ width: "80%", margin: "auto", marginBottom: "100px", color: "black"}} className="Slider" >
           <h3 style={{ width: "100%", textAlign: "center", marginTop: "30px" }}>
             Bairros
           </h3>
-          <Slider {...settings}>
-            {initiatives.map((item, index) => (
-              <div key={index} onClick={() => toggleItem(item)} className={`bairro ${selectedItems.some((selectedItem) => selectedItem.bairro === item.bairro) ? "selected" : ""}`}>
-                <p style={{ textAlign: "center" }} >{item.bairro}</p>
-              </div>
-            ))}
-          </Slider>
-      </div>
-    </div>
-    <div className="space_for_cards">
-        <div id="grid_div">
-          {selectedItems.length > 0 ? (
-          selectedItems.map((data, index) => <CardItem key={index} data={data} />)
+          {isLoading ? (
+            <Slider {...settings}>
+              {Array.from({ length: 10 }, (_, index) => (
+                <div key={index} className="neighborhood loading">
+                  <p style={{ textAlign: "center" }}>Carregando...</p>
+                </div>
+              ))}
+            </Slider>
           ) : (
-          initiatives.map((data, index) => <CardItem key={index} data={data} />)
+            <Slider {...settings}>
+              {uniqueNeighborhoods.map((neighborhood, index) => (
+                <div key={index} onClick={() => 
+                  toggleItem(neighborhood)} className={`neighborhood ${selectedItems.includes(neighborhood) ? "selected" : ""}`}>
+                  <p style={{ textAlign: "center" }}>{neighborhood}</p>
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+      </div>
+      <div className="space_for_cards">
+        <div id="grid_div">
+          {isLoading ? (
+              <p>Carregando...</p>
+            ) : 
+            selectedItems.length > 0 ? 
+              (initiatives.filter((data) => selectedItems.includes(data.neighborhood)).map((data, index) => 
+              <CardItem key={index} data={data} />)
+            ) : (
+              initiatives.map((data, index) => (
+              <CardItem key={index} data={data} />
+            ))
           )}
         </div>
       </div>
@@ -84,24 +108,14 @@ const CardItem = ({ data }: { data: any }) => {
   };
 
   return (
-   
     <Card style={{ width: "100%", height: "100%" }}>
       <Card.Img variant="top" src={montanha} />
       <Card.Body
-        style={{
-          display: "flex",
-          alignItems: "start",
-          flexDirection: "column",
-        }}
-      >
+        style={{display: "flex",alignItems: "start",flexDirection: "column"}}>
         <Card.Title>{data.name}</Card.Title>
-        <Card.Text>{data.bairro}</Card.Text>
+        <Card.Text>{data.neighborhood}</Card.Text>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
+          style={{display: "flex",justifyContent: "space-between",width: "100%"}}
         >
           <Button variant="primary">Saiba Mais</Button>
           <FontAwesomeIcon

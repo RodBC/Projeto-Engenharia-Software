@@ -18,7 +18,7 @@ export const InitiativeForm = () => {
   const [textarea, setTextArea] = useState("");
 
   const [imageUpload, setImageUpload] = useState(null);
-  const [imageBanner, setImageBanner] = useState(null);
+  // const [imageBanner, setImageBanner] = useState(null);
 
   const uploadFileIcon = async () => {
     if (imageUpload == null) return;
@@ -27,26 +27,32 @@ export const InitiativeForm = () => {
       `images/user/icon/${imageUpload.name + v4()}`
     );
 
-    if (imageBanner == null) return;
-    const imageRef2 = ref(
-      storage,
-      `images/user/banner/${imageBanner.name + v4()}`
-    );
+    // if (imageBanner == null) return;
+    // const imageRef2 = ref(
+    //   storage,
+    //   `images/user/banner/${imageBanner.name + v4()}`
+    // );
     
     try {
       // Upload the image and get the URL
       const snapshot = await uploadBytes(imageRef, imageUpload);
-      const snapshot2 = await uploadBytes(imageRef2, imageBanner);
+      // const snapshot2 = await uploadBytes(imageRef2, imageBanner);
 
       const url = await getDownloadURL(snapshot.ref);
-      const url2 = await getDownloadURL(snapshot2.ref);
+      // const url2 = await getDownloadURL(snapshot2.ref);
 
       // Now, call updateUser with the updated imageUrls
-      updateUser(auth?.user?.id, url, textarea, url2);
+      // updateUser(auth?.user?.id, url, textarea, url2);
+  
+
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
+
+  function teste(){
+    updateUser()
+  }
 
   return (
     <>
@@ -120,7 +126,7 @@ export const InitiativeForm = () => {
             </div>
           </div>
 
-          <Button className="btn btn-primary" onClick={uploadFileIcon}>
+          <Button className="btn btn-primary" onClick={teste}>
             Prosseguir
           </Button>
         </div>

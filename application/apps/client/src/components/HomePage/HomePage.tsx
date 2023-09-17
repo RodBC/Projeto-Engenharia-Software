@@ -8,14 +8,14 @@ export const HomePage = () => {
 
     const { createInitiative } = useAuth()
 
-    function teste(){
-        createInitiative(
-            "Ajude marcelo Jota", "contabilidade", "Iputinga", null, null, null)
+    function ativar(){
+        createInitiative("Pirão", "nda", "Várzea", null, null, null)
     }
 
     return(
       <>  
         <NavBar/>
+        <button onClick={ativar}>teste</button>
       
             <TestCard/>
         

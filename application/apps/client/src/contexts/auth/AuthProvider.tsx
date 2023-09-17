@@ -48,6 +48,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const signUp = async (email: string, password: string, name: string) => {
+    try {
+      const response = await Api.signUp(email, password, name);
+
+      console.log(response.id, response.name);
+
+    } catch (error) {
+      console.error("Erro ao cadastrar:", error);
+      throw error;
+    }
+  };
+
   const logOut = async () => {
     try {
       localStorage.clear();
@@ -67,13 +79,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const getUser = async (Id: number) => {
+
+    try {
+      const response = await Api.getUser(Id);
+
+      setUser({
+        id: response.id,
+        name: response.name,
+        description: response.description,
+        imgUrl: response.imgUrl,
+        bannerUrl: response.bannerUrl,
+      });
+    } catch (error) {
+      console.error("Erro ao obter usuário", error);
+      throw error;
+    }
+  };
+
+  const updateUser = async () => {
+
+    try {
+
+      const response = await Api.update();
+
+    } catch (error) {
+      console.error("Erro ao atualizar usuário", error);
+      throw error;
+    }
+  };
+
+  const createInitiative = async (
+    name: string,
+    description: string,
+    bairro: string,
+    icon: string | null,
+    images: string | null,
+    socials: string | null,
+  ) => {
+
+    try {
+      const response = await Api.createInitiative(
+        name,
+        description,
+        bairro,
+        icon,
+        images,
+        socials,
+      );
+    } catch (error) {
+      console.error("Erro ao chamar a api de criação:", error);
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         user,
         signIn,
+        signUp,
         logOut,
         getAllInitiatives,
+        getUser,
+        updateUser,
+        createInitiative,
         isAuthenticated,
       }}
     >
