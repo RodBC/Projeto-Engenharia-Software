@@ -29,8 +29,8 @@ export class AuthController {
     const { user, access_token, refresh_token } =
       await this.authService.signIn(signInDto);
 
-    res.cookie('jwt', access_token, { httpOnly: true });
-    res.cookie('refreshToken', refresh_token, { httpOnly: true });
+    res.cookie('jwt', access_token, { httpOnly: false });
+    res.cookie('refreshToken', refresh_token, { httpOnly: false});
 
     delete user.password;
 

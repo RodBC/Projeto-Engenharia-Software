@@ -41,6 +41,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       };
       setUser(userResponse);
       localStorage.setItem("user", JSON.stringify(userResponse));
+
+     
     } catch (error) {
       console.error("Erro ao fazer login:", error);
 
@@ -97,17 +99,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const updateUser = async () => {
+
+
+
+
+  const updateUser = async (description:string) => {
 
     try {
-
-      const response = await Api.update();
+      const jwtCookie = document.cookie.includes('jwt');
+      console.log(jwtCookie)
+      const response = await Api.updateUser(description);
 
     } catch (error) {
       console.error("Erro ao atualizar usuário", error);
       throw error;
     }
   };
+
+
+
+
 
   const createInitiative = async (
     name: string,

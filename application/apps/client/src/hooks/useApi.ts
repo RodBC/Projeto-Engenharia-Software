@@ -1,11 +1,7 @@
-// api.ts
 import axios from "axios";
 
-// axios.defaults.withCredentials = true
-
-
 export const api = axios.create({
-  baseURL: "http://localhost:3000", // Coloque a URL correta do seu backend
+  baseURL: "http://localhost:3000",
 });
 
 export const useApi = () => ({
@@ -17,6 +13,7 @@ export const useApi = () => ({
         password,
       });
 
+      console.log(response.headers)
       return response;
     } catch (error) {
       console.error("Erro ao fazer login:", error);
@@ -65,9 +62,11 @@ export const useApi = () => ({
   },
   
 
-  update: async () => {
+  updateUser: async (description:string) => {
     try {
-      const response = await api.put(`/api/user/update`);
+      const response = await api.put(`/api/user/update`, {
+        description
+      });
 
       return response;
     } catch (error) {

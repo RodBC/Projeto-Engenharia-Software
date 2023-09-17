@@ -21,6 +21,7 @@ export const TestCard = () => {
     const fetchData = async () => {
       try {
         const response = await getAllInitiatives();
+        console.log(response)
         setInitiatives(response);
         setIsLoading(false);
       } catch (error) {
