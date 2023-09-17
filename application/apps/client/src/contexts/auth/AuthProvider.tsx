@@ -62,6 +62,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const checkAuth = async () => {
+    try {
+      const response = await Api.checkAuth();
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
   const logOut = async () => {
     try {
       localStorage.clear();
@@ -156,6 +164,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         updateUser,
         createInitiative,
         isAuthenticated,
+        checkAuth,
       }}
     >
       {children}

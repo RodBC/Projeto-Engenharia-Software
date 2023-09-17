@@ -16,6 +16,11 @@ export class AuthController {
     private readonly usersService: UsersService,
   ) { }
 
+  async addAuthCookies(jwt: string, refreshToken: string, res: Response) {
+    res.cookie('jwt', jwt);
+    res.cookie('refreshToken', refreshToken);
+    }
+
   @Post('/sign-up')
   async signUp(@Body() registerUserDto: CreateUserDto) {
     const user: User = await this.usersService.create(registerUserDto);
@@ -29,8 +34,7 @@ export class AuthController {
     const { user, access_token, refresh_token } =
       await this.authService.signIn(signInDto);
 
-    res.cookie('jwt', access_token, { httpOnly: false });
-    res.cookie('refreshToken', refresh_token, { httpOnly: false});
+    this.addAuthCookies(access_token, refresh_token, res);
 
     delete user.password;
 
@@ -52,11 +56,10 @@ export class AuthController {
 
     const user = await this.usersService.findOne(refreshTokenDto.userId);
 
-    const new_jwt = this.authService.createJwtToken(user);
-    const new_refresh_token = this.authService.createRefreshToken(refreshTokenDto.userId);
+    const new_jwt = await this.authService.createJwtToken(user);
+    const new_refresh_token = await this.authService.createRefreshToken(refreshTokenDto.userId);
 
-    res.cookie('jwt', new_jwt, { httpOnly: true });
-    res.cookie('refreshToken', new_refresh_token, { httpOnly: true });
+    this.addAuthCookies(new_jwt, new_refresh_token, res);
 
     res.status(200).send();
   }

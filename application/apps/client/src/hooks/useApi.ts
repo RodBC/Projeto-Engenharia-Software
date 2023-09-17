@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export const api = axios.create({
   baseURL: "http://localhost:3000",
 });
@@ -75,6 +77,17 @@ export const useApi = () => ({
     }
   },
 
+  checkAuth: async () => {
+    try {
+      const response = await api.get(`/api/auth/check`);
+      console.log("Logado:", response.data);
+      return response;
+    } catch (error) {
+      console.error("Erro ao atualizar:", error);
+      throw error;
+    }
+  },
+
   getUser: async (id: number) => {
     try {
       const response = await api.get(`api/user/?userId=${Number(id)}`);
@@ -85,6 +98,8 @@ export const useApi = () => ({
       throw error;
     }
   },
+
+
 
   createInitiative: async (
     name: string,

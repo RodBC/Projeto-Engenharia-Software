@@ -9,7 +9,6 @@ const cookieExtractor = (req) => {
 
   if (req && req.cookies) {
     jwt = req.cookies['jwt'];
-    console.log(req.cookies)
   }
 
   return jwt;

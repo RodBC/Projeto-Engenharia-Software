@@ -10,4 +10,5 @@ export type AuthContextType = {
     getAllInitiatives: () => Promise<any>
     isAuthenticated: () => boolean;
     logOut: () => Promise<void>;
+    checkAuth: () => Promise<void>;
   };

@@ -5,14 +5,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { AuthContext } from '../../contexts/auth/AuthContext';
+import { AuthContext, useAuth } from '../../contexts/auth/AuthContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as styled from './styles'
 
+
 export const NavBar = () => {
 
 	const auth = useContext(AuthContext)
+  const { checkAuth } = useAuth()
   const navigate = useNavigate()
 
   return (
@@ -55,7 +57,7 @@ export const NavBar = () => {
 					          {/* Se o usuário extiver logado, permita ele acessar o recurso */}
                     {auth?.user &&  <NavDropdown.Item href="/UserPage">Criar Iniciativa</NavDropdown.Item>}
                     {!auth?.user &&  <NavDropdown.Item href="/login">Criar Iniciativa</NavDropdown.Item>}
-                    <NavDropdown.Item href="#action4">
+                    <NavDropdown.Item href="#action4" onClick={checkAuth}>
                       Another action
                     </NavDropdown.Item>
                     <NavDropdown.Divider />

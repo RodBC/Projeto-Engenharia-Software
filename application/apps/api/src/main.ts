@@ -18,7 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.setGlobalPrefix('api');
-  app.enableCors(); // Permite todas as origens (não recomendado para produção)
+  app.enableCors({ credentials: true, origin: 'http://localhost:5173' });
   await app.listen(3000);
 }
 bootstrap();
