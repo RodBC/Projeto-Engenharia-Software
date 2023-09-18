@@ -10,7 +10,7 @@ import {
   UseGuards,
   Query,
 } from '@nestjs/common';
-import { ParticipateService } from './participate.service';
+import { ParticipateService } from '../participate/participate.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UserId } from 'src/auth/userId.decorator';
 

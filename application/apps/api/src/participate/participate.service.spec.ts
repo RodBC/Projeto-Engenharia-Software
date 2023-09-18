@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ParticipateService } from './participate.service';
 
-describe('LikesService', () => {
+describe('ParticipateService', () => {
   let service: ParticipateService;
 
   beforeEach(async () => {

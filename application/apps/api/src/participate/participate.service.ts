@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Participate } from './entities/participate.entity';
+import { Participate } from '../participate/entities/participate.entity';
 
 @Injectable()
 export class ParticipateService {
