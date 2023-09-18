@@ -6,6 +6,8 @@ import Button from './Button/Button';
 import Input from './Input/Input';
 import image from '../../assets/GIF.gif'
 import { showSuccessToast, showErrorToast, showAutoCloseAlert } from '../Alert/Alert';
+import { MDBCheckbox } from 'mdb-react-ui-kit';
+        
 
 export const RegisterPage =()=> {
 
@@ -105,6 +107,11 @@ export const RegisterPage =()=> {
             placeholder="confirme sua senha" 
             required/>
           </C.IconWrapper>
+         
+          <div className='d-flex flex-row justify-content-center '>
+            <MDBCheckbox name='flexCheck' id='flexCheckDefault'/>
+            <p>Aceito todos os <span style={{color: 'blue', cursor: 'pointer'}}>termos de serviço</span></p>
+          </div>
 
             <Button Text="Registrar" Type='submit' onClick={onSubmit}/>
             <C.labelError>{error }</C.labelError>

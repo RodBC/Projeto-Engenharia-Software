@@ -6,35 +6,44 @@ import { useApi } from "../../hooks/useApi";
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children} ) => {
 
   const [user, setUser] = useState<User | null>(null);
+  const [authenticated, setAuthenticated] = useState(false);
+
   const Api = useApi();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
+      setAuthenticated(true)
       const userFromLocalStorage = JSON.parse(storedUser);
-      setUser(userFromLocalStorage);
+      setUser(userFromLocalStorage.data);
     }
   }, []);
 
-  const isAuthenticated = () => {
-    const storedUser = localStorage.getItem("user");
-
-    if (storedUser) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   const signIn = async (email: string, password: string) => {
     try {
       const response = await Api.signIn(email, password);
-
-      localStorage.setItem("user", JSON.stringify(response.data)); 
+      setAuthenticated(true)
+  
+      const userExpirationTimeInSeconds = 3600; // Tempo de expiração em segundos (30 segundos)
+      const expirationTimestamp = Date.now() + userExpirationTimeInSeconds * 1000;
+  
+      const userToStore = {
+        data: response.data,
+        expiration: expirationTimestamp,
+      };
+  
+      localStorage.setItem("user", JSON.stringify(userToStore)); 
+  
+      setTimeout(() => {
+        localStorage.removeItem("user");
+        setUser(null);
+        window.location.reload()
+      }, userExpirationTimeInSeconds * 1000);
+  
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-
       throw error;
     }
   };
@@ -53,6 +62,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
 
   const logOut = async () => {
     try {
+      setAuthenticated(false)
       localStorage.clear();
       const response = await Api.logOut();
     } catch (error) {
@@ -114,11 +124,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
         images,
         socials,
       );
+      return response.data
     } catch (error) {
       console.error("Erro ao chamar a api de criação:", error);
       throw error;
     }
   };
+
+  const getOneInitiative = async (id:number) => {
+    try {
+      const response = await Api.getOneInitiative(id);
+
+      return response
+     
+    } catch (error) {
+      console.error("Erro ao atualizar usuário", error);
+      throw error;
+    }
+  }
 
   return (
     <AuthContext.Provider
@@ -131,7 +154,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
         getUser,
         updateUser,
         createInitiative,
-        isAuthenticated,
+        getOneInitiative,
+        authenticated,
       }}
     >
       {children}

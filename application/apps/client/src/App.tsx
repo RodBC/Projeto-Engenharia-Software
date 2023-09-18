@@ -34,15 +34,14 @@ export const App = () => {
         {/* Página de Login */}
         <Route path="/login" element={<LoginPage />} />
 
-        <Route path='/UserPage' element={auth?.isAuthenticated() ? <UserPage/> :  <Navigate to="/login" />} />
+        <Route path='/UserPage' element={auth?.authenticated ? <UserPage/> :  <Navigate to="/login" />} />
 
-          {/* página da iniciativa */}
-          <Route path='/Initiative/:id' element={<InitiativePage/>}/>
-          
-          <Route path='/UserForm' element={<UserForm/>}/>
+        <Route path='/Initiative/:id' element={auth?.authenticated ? <InitiativePage/>: <Navigate to="/login"/>} />
+        
+        <Route path='/UserForm' element={<UserForm/>}/>
 
-          <Route path='/Form' element={<InitiativeForm/>}/>
-          
+        <Route path='/InitiativeForm' element={auth?.authenticated ? <InitiativeForm/> : <Navigate to="/login" /> } />
+        
       </Routes>
     </div>
   )

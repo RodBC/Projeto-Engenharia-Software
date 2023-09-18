@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { MDBBtn } from "mdb-react-ui-kit";
 
-export const Button = styled.button`
+export const Button = styled(MDBBtn)`
   padding: 16px 20px;
   outline: none;
   border: none;

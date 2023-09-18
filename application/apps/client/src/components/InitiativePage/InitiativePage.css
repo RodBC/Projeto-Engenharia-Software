@@ -161,7 +161,6 @@ body{
     /* width: 300px;
     height: 250px; */
     width: 100%;
-    height: auto;
     object-fit: cover;
     border-radius: 0%;
     cursor: pointer;

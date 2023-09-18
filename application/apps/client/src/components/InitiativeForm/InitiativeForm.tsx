@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebase";
 import { v4 } from "uuid";
+import { useNavigate } from 'react-router-dom';
 
 export const InitiativeForm = () => {
 
     const { createInitiative } = useAuth()
+    const navigate = useNavigate()
 
     const [description, setDescription] = useState("");
     const [name, setName] = useState("")
@@ -26,7 +28,9 @@ export const InitiativeForm = () => {
             const snapshot = await uploadBytes(imageRef, image);
             const url = await getDownloadURL(snapshot.ref);
     
-            await createInitiative(name, description, neighborhood, url, null, null)
+            const response = await createInitiative(name, description, neighborhood, url, null, null)
+            navigate(`/Initiative/${response.id}`)
+
         } catch (error) {
             console.error("Error uploading image:", error);
         }

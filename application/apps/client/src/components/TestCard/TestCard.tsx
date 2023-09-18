@@ -110,12 +110,6 @@ const CardItem = ({ data }: { data: any }) => {
 
   const navigate = useNavigate()
 
-  function teste(){
-    console.log(data)
-
-    return navigate(`/Initiative/${data.id}`)
-  }
-
 
   return (
     <Card style={{ width: "100%", height: "100%" }}>
@@ -127,7 +121,7 @@ const CardItem = ({ data }: { data: any }) => {
         <div
           style={{display: "flex",justifyContent: "space-between",width: "100%"}}
         >
-          <Button variant="primary" onClick={teste} >Saiba Mais</Button>
+          <Button variant="primary" onClick={() => {return navigate(`/Initiative/${data.id}`)}} >Saiba Mais</Button>
           <FontAwesomeIcon
             icon={faHeart}
             className="heart_button"

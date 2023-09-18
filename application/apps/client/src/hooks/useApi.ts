@@ -110,4 +110,16 @@ export const useApi = () => ({
     }
   },
 
+  getOneInitiative: async (id:number) => {
+    try {
+      const response = await api.get(`/api/initiative/${id}`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao obter a iniciativa:`, error);
+      throw error;
+    }
+
+  }
+
 });
