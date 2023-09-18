@@ -7,7 +7,7 @@ export class Initiative {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @Column()
+    @Column({nullable: false})
     ownerId: string;
 
     @Column()
