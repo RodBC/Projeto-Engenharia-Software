@@ -55,7 +55,7 @@ export const NavBar = () => {
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
 					          {/* Se o usuário extiver logado, permita ele acessar o recurso */}
-                    {auth?.user &&  <NavDropdown.Item href="/UserPage">Criar Iniciativa</NavDropdown.Item>}
+                    {auth?.user &&  <NavDropdown.Item href="/Form">Criar Iniciativa</NavDropdown.Item>}
                     {!auth?.user &&  <NavDropdown.Item href="/login">Criar Iniciativa</NavDropdown.Item>}
                     <NavDropdown.Item href="#action4" onClick={checkAuth}>
                       Another action

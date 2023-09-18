@@ -1,24 +1,14 @@
 import * as styled from "./styles";
-import { useContext, useEffect } from "react";
-import { AuthContext, useAuth } from "../../contexts/auth/AuthContext";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
 import { NavBar } from "../Navbar/navbar";
 import { Footer } from "../Footer/Footer";
-import { InitiativeForm } from "../InitiativeForms/initiative_forms";
+import { UserForm } from "../userForms/userForms";
 
 export const UserPage = () => {
   const auth = useContext(AuthContext);
-  // const { getUser } = useAuth();
-
-  // useEffect(() => {
-
-  //   if(auth?.user){
-  //     getUser(Number(auth?.user?.id));
-  //   }
-   
-  // }, []);
-
 
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -46,7 +36,7 @@ export const UserPage = () => {
           >
           <styled.IconClose onClick={toggleModal} />
           </div>
-          <InitiativeForm />
+          <UserForm/>
         </styled.ModalContainer>
       )}
 

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/auth/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom'
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import montanha from "../../assets/fotoCool.jpeg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -108,9 +108,18 @@ const CardItem = ({ data }: { data: any }) => {
     setCurtida(!curtida);
   };
 
+  const navigate = useNavigate()
+
+  function teste(){
+    console.log(data)
+
+    return navigate(`/Initiative/${data.id}`)
+  }
+
+
   return (
     <Card style={{ width: "100%", height: "100%" }}>
-      <Card.Img variant="top" src={montanha} />
+      <Card.Img variant="top" src={data.icon} style={{height: '250px'}}/>
       <Card.Body
         style={{display: "flex",alignItems: "start",flexDirection: "column"}}>
         <Card.Title>{data.name}</Card.Title>
@@ -118,7 +127,7 @@ const CardItem = ({ data }: { data: any }) => {
         <div
           style={{display: "flex",justifyContent: "space-between",width: "100%"}}
         >
-          <Button variant="primary">Saiba Mais</Button>
+          <Button variant="primary" onClick={teste} >Saiba Mais</Button>
           <FontAwesomeIcon
             icon={faHeart}
             className="heart_button"

@@ -3,9 +3,8 @@ import { User } from "../../types/User";
 import { useState, useEffect } from "react";
 import { useApi } from "../../hooks/useApi";
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children} ) => {
+
   const [user, setUser] = useState<User | null>(null);
   const Api = useApi();
 
@@ -32,17 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const response = await Api.signIn(email, password);
 
-      const userResponse = {
-        id: response.data.id,
-        name: response.data.name,
-        description: response.data.description,
-        imgUrl: response.data.imgUrl,
-        bannerUrl: response.data.bannerUrl,
-      };
-      setUser(userResponse);
-      localStorage.setItem("user", JSON.stringify(userResponse));
-
-     
+      localStorage.setItem("user", JSON.stringify(response.data)); 
     } catch (error) {
       console.error("Erro ao fazer login:", error);
 
@@ -59,14 +48,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       throw error;
-    }
-  };
-
-  const checkAuth = async () => {
-    try {
-      const response = await Api.checkAuth();
-    } catch (error) {
-      console.error("Erro ao fazer logout:", error);
     }
   };
 
@@ -94,39 +75,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const response = await Api.getUser(Id);
 
-      setUser({
-        id: response.id,
-        name: response.name,
-        description: response.description,
-        imgUrl: response.imgUrl,
-        bannerUrl: response.bannerUrl,
-      });
+      console.log(response.data)
+
+      // setUser(response.data)
     } catch (error) {
       console.error("Erro ao obter usuário", error);
       throw error;
     }
   };
 
-
-
-
-
-  const updateUser = async (description:string) => {
+  const updateUser = async (imgUrl:string, bannerUrl:string, description:string, ) => {
 
     try {
-      const jwtCookie = document.cookie.includes('jwt');
-      console.log(jwtCookie)
-      const response = await Api.updateUser(description);
-
+      const response = await Api.updateUser(imgUrl, bannerUrl, description);
+      setUser(response.data)
+     
     } catch (error) {
       console.error("Erro ao atualizar usuário", error);
       throw error;
     }
   };
-
-
-
-
 
   const createInitiative = async (
     name: string,
@@ -164,7 +132,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         updateUser,
         createInitiative,
         isAuthenticated,
-        checkAuth,
       }}
     >
       {children}

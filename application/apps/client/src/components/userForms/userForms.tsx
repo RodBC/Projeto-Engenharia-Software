@@ -3,57 +3,54 @@ import Form from "react-bootstrap/Form";
 import { AiFillFacebook } from "react-icons/ai";
 import { useState } from "react";
 import { AiFillInstagram, AiFillTwitterCircle } from "react-icons/ai";
-import { AuthContext, useAuth } from "../../contexts/auth/AuthContext.tsx";
-import { useContext } from "react";
+import { useAuth } from "../../contexts/auth/AuthContext.tsx";
 // import { showAutoCloseAlert } from "../Alert/Alert.tsx";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebase";
 import { v4 } from "uuid";
+import { useContext} from 'react'
+import { AuthContext } from "../../contexts/auth/AuthContext.tsx";
 
-export const InitiativeForm = () => {
+export const UserForm = () => {
   //  --------------------firebase-config--------------------------
 
   const { updateUser } = useAuth();
-  const auth = useContext(AuthContext);
   const [textarea, setTextArea] = useState("");
+
+  const auth = useContext(AuthContext)
 
   const [imageUpload, setImageUpload] = useState(null);
   const [imageBanner, setImageBanner] = useState(null);
 
-  // const uploadFileIcon = async () => {
-  //   if (imageUpload == null) return;
-  //   const imageRef = ref(
-  //     storage,
-  //     `images/user/icon/${imageUpload.name + v4()}`
-  //   );
+   const uploadFileIcon = async () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(
+      storage,
+      `images/user/icon/${imageUpload.name + v4()}`
+    );
 
-  //   // if (imageBanner == null) return;
-  //   // const imageRef2 = ref(
-  //   //   storage,
-  //   //   `images/user/banner/${imageBanner.name + v4()}`
-  //   // );
+    if (imageBanner == null) return;
+    const imageRef2 = ref(
+      storage,
+      `images/user/banner/${imageBanner.name + v4()}`
+    );
     
-  //   try {
-  //     // Upload the image and get the URL
-  //     const snapshot = await uploadBytes(imageRef, imageUpload);
-  //     // const snapshot2 = await uploadBytes(imageRef2, imageBanner);
+    try {
+      // Upload the image and get the URL
+      const snapshot = await uploadBytes(imageRef, imageUpload);
+      const snapshot2 = await uploadBytes(imageRef2, imageBanner);
 
-  //     const url = await getDownloadURL(snapshot.ref);
-  //     // const url2 = await getDownloadURL(snapshot2.ref);
+      const url = await getDownloadURL(snapshot.ref);
+      const url2 = await getDownloadURL(snapshot2.ref);
 
-  //     // Now, call updateUser with the updated imageUrls
-  //     // updateUser(auth?.user?.id, url, textarea, url2);
+      await updateUser(url, url2, textarea);
+      window.location.reload()
   
 
-  //   } catch (error) {
-  //     console.error("Error uploading image:", error);
-  //   }
-  // };
-
-  function teste(){
-    console.log(textarea)
-    updateUser(textarea)
-  }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
   return (
     <>
@@ -127,7 +124,7 @@ export const InitiativeForm = () => {
             </div>
           </div>
 
-          <Button className="btn btn-primary" onClick={teste}>
+          <Button className="btn btn-primary" onClick={uploadFileIcon}>
             Prosseguir
           </Button>
         </div>

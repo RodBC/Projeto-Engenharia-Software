@@ -64,10 +64,12 @@ export const useApi = () => ({
   },
   
 
-  updateUser: async (description:string) => {
+  updateUser: async (imgUrl:string, bannerUrl:string, description:string) => {
     try {
       const response = await api.put(`/api/user/update`, {
-        description
+        imgUrl,
+        bannerUrl,
+        description,
       });
 
       return response;
@@ -77,22 +79,11 @@ export const useApi = () => ({
     }
   },
 
-  checkAuth: async () => {
+  getUser: async (id:number) => {
     try {
-      const response = await api.get(`/api/auth/check`);
-      console.log("Logado:", response.data);
+      const response = await api.get(`api/user/?userId=${id}`);
+      console.log(response.data.id)
       return response;
-    } catch (error) {
-      console.error("Erro ao atualizar:", error);
-      throw error;
-    }
-  },
-
-  getUser: async (id: number) => {
-    try {
-      const response = await api.get(`api/user/?userId=${Number(id)}`);
-
-      return response.data;
     } catch (error) {
       console.error("Erro ao obter usuário:", error);
       throw error;
@@ -100,21 +91,17 @@ export const useApi = () => ({
   },
 
 
-
   createInitiative: async (
     name: string,
     description: string,
-    bairro: string,
+    neighborhood: string,
     icon: string | null,
     images: string | null,
     socials: string | null,
   ) => {
     try {
-      const response = await api.post(
-        `/api/initiative`,
-        { name, description, bairro, icon, images, socials },
-    
-      );
+      const response = await api.post(`/api/initiative`,
+      { name, description, neighborhood, icon, images, socials },);
 
       return response;
     } catch (error) {
@@ -122,7 +109,5 @@ export const useApi = () => ({
       throw error;
     }
   },
-
- 
 
 });
