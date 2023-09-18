@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";;
+import { User } from "src/users/user.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";;
 
 @Entity()
 export class Initiative {
@@ -26,4 +27,8 @@ export class Initiative {
 
     @Column({ nullable: true })
     icon: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'ownerId' })
+    owner: User;
 }
