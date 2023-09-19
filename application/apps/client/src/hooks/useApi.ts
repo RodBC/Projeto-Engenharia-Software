@@ -119,7 +119,41 @@ export const useApi = () => ({
       console.error(`Erro ao obter a iniciativa:`, error);
       throw error;
     }
+  },
 
+  createLike: async (id:number) => {
+    try {
+      const response = await api.post(`/api/likes/${id}`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  },
+
+  deleteLike: async (id:number) => {
+    try {
+      const response = await api.delete(`/api/likes/${id}`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  },
+
+  getUserLikes: async () => {
+    try {
+      const response = await api.get(`/api/likes/user`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao obter curtidas do usuário:`, error);
+      throw error;
+    }
   }
+
+  
 
 });

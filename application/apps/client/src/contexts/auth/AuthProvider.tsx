@@ -52,8 +52,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
     try {
       const response = await Api.signUp(email, password, name);
 
-      console.log(response.id, response.name);
-
     } catch (error) {
       console.error("Erro ao cadastrar:", error);
       throw error;
@@ -84,8 +82,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
 
     try {
       const response = await Api.getUser(Id);
-
-      console.log(response.data)
 
       // setUser(response.data)
     } catch (error) {
@@ -141,8 +137,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
       console.error("Erro ao atualizar usuário", error);
       throw error;
     }
-  }
+  };
 
+  const createLike = async (id:number) => {
+    try {
+      const response = await Api.createLike(id);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  };
+
+  const deleteLike = async (id:number) => {
+    try {
+      const response = await Api.deleteLike(id);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  };
+
+  const getUserLikes= async () => {
+    try {
+      const response = await Api.getUserLikes()
+      console.log(response)
+
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao obter curtidas do usuário:`, error);
+      throw error;
+    }
+  };
+  
   return (
     <AuthContext.Provider
       value={{
@@ -155,6 +185,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
         updateUser,
         createInitiative,
         getOneInitiative,
+        createLike,
+        deleteLike,
+        getUserLikes,
         authenticated,
       }}
     >

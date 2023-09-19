@@ -15,15 +15,24 @@ export const TestCard = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [initiatives, setInitiatives] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { getAllInitiatives } = useAuth();
+  const { getAllInitiatives, getUserLikes } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllInitiatives();
-        console.log(response)
-        setInitiatives(response);
+        const userLikes = await getUserLikes();
+
+        const userLikedInitiativeIds = userLikes.map((like) => like.initiativeId);
+
+        const initiativesWithLikes = response.map((initiative) => ({
+          ...initiative,
+          liked: userLikedInitiativeIds.includes(initiative.id),
+        }));
+        
+        setInitiatives(initiativesWithLikes);
         setIsLoading(false);
+        
       } catch (error) {
         console.error("Erro ao buscar iniciativas:", error);
         setIsLoading(false);
@@ -102,14 +111,15 @@ export const TestCard = () => {
 };
 
 const CardItem = ({ data }: { data: any }) => {
-  const [curtida, setCurtida] = useState(false);
+  const [curtida, setCurtida] = useState(data.liked);
+  const { createLike, deleteLike } = useAuth()
 
-  const muda_curtida = () => {
+  const muda_curtida = async() => {
     setCurtida(!curtida);
+    curtida ? await deleteLike(data.id) : await createLike(data.id)
   };
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <Card style={{ width: "100%", height: "100%" }}>
