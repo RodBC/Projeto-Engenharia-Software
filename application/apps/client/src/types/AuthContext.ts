@@ -13,6 +13,7 @@ export type AuthContextType = {
     createLike: (id:number) => Promise<any>
     deleteLike: (id:number) => Promise<any>
     getUserLikes: () => Promise<any>
+    getAllLikes: () => Promise<any>
     authenticated: boolean;
     logOut: () => Promise<void>;
   };

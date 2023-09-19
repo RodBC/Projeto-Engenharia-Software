@@ -45,7 +45,7 @@ export const NavBar = () => {
                   <Nav.Link href="/home">Início</Nav.Link>
                   <Nav.Link href="/about">Sobre</Nav.Link>
                   <Nav.Link href="/contact">Contatos</Nav.Link>
-                  <Nav.Link href="/UserPage">Perfil</Nav.Link>
+                  <Nav.Link onClick={()=>{return navigate("/UserPage")}}>Perfil</Nav.Link>
 				 
                   <NavDropdown
                     title="Mais"

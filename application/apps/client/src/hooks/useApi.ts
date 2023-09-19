@@ -152,6 +152,17 @@ export const useApi = () => ({
       console.error(`Erro ao obter curtidas do usuário:`, error);
       throw error;
     }
+  },
+
+  getAllLikes: async () => {
+    try {
+      const response = await api.get(`/api/likes`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao obter curtidas das iniciativas:`, error);
+      throw error;
+    }
   }
 
   

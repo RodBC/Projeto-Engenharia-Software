@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "../../contexts/auth/AuthContext";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext, useAuth } from "../../contexts/auth/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom'
@@ -15,24 +15,36 @@ export const TestCard = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [initiatives, setInitiatives] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { getAllInitiatives, getUserLikes } = useAuth();
+  const { getAllInitiatives, getUserLikes, getAllLikes } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllInitiatives();
         const userLikes = await getUserLikes();
-
+        const allLikes = await getAllLikes(); 
         const userLikedInitiativeIds = userLikes.map((like) => like.initiativeId);
+
+        const likesCountMap = {};
+
+        allLikes.forEach((like) => {
+          const { initiativeId } = like;
+          if (likesCountMap[initiativeId]) {
+            likesCountMap[initiativeId]++;
+          } else {
+            likesCountMap[initiativeId] = 1;
+          }
+        });
 
         const initiativesWithLikes = response.map((initiative) => ({
           ...initiative,
           liked: userLikedInitiativeIds.includes(initiative.id),
+          likesCount: likesCountMap[initiative.id] || 0, 
         }));
-        
+
         setInitiatives(initiativesWithLikes);
         setIsLoading(false);
-        
+
       } catch (error) {
         console.error("Erro ao buscar iniciativas:", error);
         setIsLoading(false);
@@ -101,7 +113,7 @@ export const TestCard = () => {
               <CardItem key={index} data={data} />)
             ) : (
               initiatives.map((data, index) => (
-              <CardItem key={index} data={data} />
+              <CardItem key={index} data={data}  />
             ))
           )}
         </div>
@@ -112,35 +124,65 @@ export const TestCard = () => {
 
 const CardItem = ({ data }: { data: any }) => {
   const [curtida, setCurtida] = useState(data.liked);
-  const { createLike, deleteLike } = useAuth()
+  const { createLike, deleteLike } = useAuth();
+  const [localLikesCount, setLocalLikesCount] = useState(data.likesCount);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const auht = useContext(AuthContext)
 
-  const muda_curtida = async() => {
-    setCurtida(!curtida);
-    curtida ? await deleteLike(data.id) : await createLike(data.id)
+  const updateLikesCount = (newCount: number) => {
+    setLocalLikesCount(newCount);
+  };
+
+
+  const muda_curtida = async () => {
+    if (auht?.authenticated){
+      try {
+        setIsUpdating(true);
+        if (curtida) {
+          await deleteLike(data.id);
+          updateLikesCount(localLikesCount - 1); 
+        } else {
+          await createLike(data.id);
+          updateLikesCount(localLikesCount + 1); 
+        }
+        setCurtida(!curtida);
+
+      } catch (error) {
+        console.error("Erro ao mudar curtida:", error);
+      } finally {
+        setIsUpdating(false);
+      }
+    }else{
+      return navigate("/login")
+    }
   };
 
   const navigate = useNavigate();
 
   return (
     <Card style={{ width: "100%", height: "100%" }}>
-      <Card.Img variant="top" src={data.icon} style={{height: '250px'}}/>
+      <Card.Img variant="top" src={data.icon} style={{ height: '250px' }} />
       <Card.Body
-        style={{display: "flex",alignItems: "start",flexDirection: "column"}}>
+        style={{ display: "flex", alignItems: "start", flexDirection: "column" }}>
         <Card.Title>{data.name}</Card.Title>
         <Card.Text>{data.neighborhood}</Card.Text>
         <div
-          style={{display: "flex",justifyContent: "space-between",width: "100%"}}
-        >
-          <Button variant="primary" onClick={() => {return navigate(`/Initiative/${data.id}`)}} >Saiba Mais</Button>
+          style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+          <Button variant="primary" onClick={() => { return navigate(`/Initiative/${data.id}`) }}>Saiba Mais</Button>
+          <div/>
+          <div>
+          <span style={{marginRight: '10px'}}>{localLikesCount} Curtidas</span>
           <FontAwesomeIcon
             icon={faHeart}
             className="heart_button"
-            color={curtida ? "red" : "grey"}
+            color={isUpdating ? "grey" : curtida ? "red" : "grey"}
             onClick={muda_curtida}
             style={{ height: "25px", cursor: "pointer" }}
           />
+          </div>
         </div>
       </Card.Body>
     </Card>
   );
 };
+

@@ -161,10 +161,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
     }
   };
 
-  const getUserLikes= async () => {
+  const getUserLikes = async () => {
     try {
       const response = await Api.getUserLikes()
-      console.log(response)
 
       return response.data;
     } catch (error) {
@@ -172,6 +171,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
       throw error;
     }
   };
+
+  const getAllLikes = async () => {
+    try {
+      const response = await Api.getAllLikes();
+
+      return response.data
+    } catch (error) {
+      console.error(`Erro ao obter curtidas das iniciativas:`, error);
+      throw error;
+    }
+  }
   
   return (
     <AuthContext.Provider
@@ -188,6 +198,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ( {children
         createLike,
         deleteLike,
         getUserLikes,
+        getAllLikes,
         authenticated,
       }}
     >

@@ -5,6 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebase";
 import { v4 } from "uuid";
 import { useNavigate } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 export const InitiativeForm = () => {
 
@@ -15,9 +16,11 @@ export const InitiativeForm = () => {
     const [name, setName] = useState("")
     const [neighborhood, setNeighborhood] = useState("")
     const [image, setImage] = useState(null)
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const create = async() => {
+        setIsLoading(true)
 
         if (image == null) return;
 
@@ -29,10 +32,12 @@ export const InitiativeForm = () => {
             const url = await getDownloadURL(snapshot.ref);
     
             const response = await createInitiative(name, description, neighborhood, url, null, null)
+            setIsLoading(false)
             navigate(`/Initiative/${response.id}`)
 
         } catch (error) {
             console.error("Error uploading image:", error);
+            setIsLoading(false)
         }
           
     }
@@ -99,8 +104,14 @@ export const InitiativeForm = () => {
                     </MDBCol>
                 </MDBRow>
                 <hr className="mx-n3" />
-
-                <MDBBtn className='my-4' onClick={create} size='lg'>Criar Iniciativa</MDBBtn>
+                {isLoading ? ( // Renderize o spinner se isLoading for true
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        ) : (
+            <MDBBtn className='my-4' onClick={create} size='lg'>Criar Iniciativa</MDBBtn> // Renderize o botão quando isLoading for false
+        )}
+                
                 </MDBCardBody>
             </MDBCard>
             </MDBCol>
