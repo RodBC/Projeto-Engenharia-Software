@@ -1,17 +1,14 @@
 import * as styled from "./styles";
 import { useContext } from "react";
-import { AuthContext, useAuth } from "../../contexts/auth/AuthContext";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
 import { NavBar } from "../Navbar/navbar";
 import { Footer } from "../Footer/Footer";
-import { InitiativeForm } from "../InitiativeForms/initiative_forms";
+import { UserForm } from "../userForms/userForms";
 
 export const UserPage = () => {
   const auth = useContext(AuthContext);
-  const { getUser } = useAuth();
-
-  getUser(Number(auth?.user?.id));
 
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -37,17 +34,17 @@ export const UserPage = () => {
               padding: "10px",
             }}
           >
-            <styled.IconClose onClick={toggleModal} />
+          <styled.IconClose onClick={toggleModal} />
           </div>
-          <InitiativeForm />
+          <UserForm/>
         </styled.ModalContainer>
       )}
 
       <styled.Container className={showModal ? "blurred" : ""}>
         <NavBar />
         <styled.BoxImages>
-          <styled.BannerImage />
-          <styled.ProfileImage src="https://via.placeholder.com/180" />
+          <styled.BannerImage style={{backgroundImage: `url(${auth?.user?.bannerUrl})`}}/>
+          <styled.ProfileImage src={auth?.user?.imgUrl} />
           <styled.BoxInfos>
             <styled.BoxHidden>
               <styled.EditButton onClick={toggleModal}>
@@ -72,7 +69,7 @@ export const UserPage = () => {
             </div>
             <hr />
             <styled.AboutText>
-              {auth?.user && auth?.user?.description}
+              {auth?.user && auth?.user.description}
             </styled.AboutText>
           </styled.AboutTextContainer>
         </styled.AboutContainer>

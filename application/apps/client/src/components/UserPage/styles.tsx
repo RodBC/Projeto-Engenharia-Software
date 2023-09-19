@@ -4,7 +4,6 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { BiEdit } from 'react-icons/bi'
 import { GrClose} from 'react-icons/gr'
 
-
 export const Container = styled.div`
     position: relative; /* Needed for stacking context */
     width: 100vw;
@@ -65,7 +64,10 @@ export const BannerImage = styled.div`
     width: 100%;
     height: 250px;
     background-color: black;
-    background-image: url(${foto});
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
 
     
     @media (max-width: 700px) {
@@ -220,7 +222,7 @@ export const AboutTextContainer = styled.div`
 
 export const AboutText = styled.p`
     border: 1px solid gray;
-    height: 250px;
+    min-height: 250px;
     margin: 20px;
     border-radius: 15px;
     padding:15px;

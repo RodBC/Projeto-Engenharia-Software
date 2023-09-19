@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+.Slider div p{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px gray;
+  color: black;
+  cursor: pointer;
+  /* border: groove; */
+}
+
+#grid_div{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-gap: 180px;
+  width: 80vw;
+  align-items: center;
+}
+
+  /* Center the cards within the grid cells */
+.space_for_cards > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.locations_buttons{
+  width: 100vw;
+}
+
+.selected p {
+  /* background-color: #645757; Cor de fundo quando selecionado */
+  /* box-shadow: 1px 1px 10px rgb(0, 0, 0); */
+  border: 1px solid rgb(163, 161, 161);
+  background-color: rgb(230, 221, 221);
+  box-shadow: 0 1px 2px rgb(163, 161, 161);
+  /* Outros estilos de destaque aqui, se necessário */
+}

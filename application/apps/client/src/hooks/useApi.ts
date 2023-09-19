@@ -1,33 +1,21 @@
-// api.ts
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export const api = axios.create({
-  baseURL: "http://localhost:3000", // Coloque a URL correta do seu backend
+  baseURL: "https://helpcifeapi.onrender.com/api",
 });
 
 export const useApi = () => ({
-  validateToken: async (token: string, id: string) => {
-    try {
-      const response = await api.get(`api/user/?userId=${Number(id)}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao validar token:", error);
-      throw error;
-    }
-  },
 
   signIn: async (email: string, password: string) => {
     try {
-      const response = await api.post("/api/auth/sign-in", {
+      const response = await api.post("/auth/sign-in", {
         email,
         password,
       });
 
+      console.log(response.headers)
       return response;
     } catch (error) {
       console.error("Erro ao fazer login:", error);
@@ -37,7 +25,7 @@ export const useApi = () => ({
 
   signUp: async (email: string, password: string, name: string) => {
     try {
-      const response = await api.post("/api/auth/sign-up", {
+      const response = await api.post("/auth/sign-up", {
         email,
         password,
         name,
@@ -50,17 +38,39 @@ export const useApi = () => ({
     }
   },
 
-  updateUser: async (userId: number, description: string, token: string) => {
+  logOut: async () => {
     try {
-      const response = await api.put(
-        `/api/user/update/?userId=${userId}`,
-        { description },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.post("/auth/logout");
+      if (response.status === 200){
+
+      }
+      else {
+        console.error("Logout falhou: status de resposta não é 200");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  },
+
+  getAllInitiatives: async () => {
+    try {
+      const response = await api.get(`/initiative`);
+
+      return response;
+    } catch (error) {
+      console.error("Erro ao obter iniciativas:", error);
+      throw error;
+    }
+  },
+  
+
+  updateUser: async (imgUrl:string, bannerUrl:string, description:string) => {
+    try {
+      const response = await api.put(`/user/update`, {
+        imgUrl,
+        bannerUrl,
+        description,
+      });
 
       return response;
     } catch (error) {
@@ -69,40 +79,29 @@ export const useApi = () => ({
     }
   },
 
-  getUser: async (id: number, token: string) => {
+  getUser: async (id:number) => {
     try {
-      const response = await api.get(`api/user/?userId=${Number(id)}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      return response.data;
+      const response = await api.get(`/user/?userId=${id}`);
+      console.log(response.data.id)
+      return response;
     } catch (error) {
       console.error("Erro ao obter usuário:", error);
       throw error;
     }
   },
 
+
   createInitiative: async (
     name: string,
     description: string,
-    bairro: string,
+    neighborhood: string,
     icon: string | null,
     images: string | null,
     socials: string | null,
-    token: string
   ) => {
     try {
-      const response = await api.post(
-        `/api/initiative`,
-        { name, description, bairro, icon, images, socials },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.post(`/initiative`,
+      { name, description, neighborhood, icon, images, socials },);
 
       return response;
     } catch (error) {
@@ -111,19 +110,61 @@ export const useApi = () => ({
     }
   },
 
-  getAllInitiatives: async (token:string) => {
+  getOneInitiative: async (id:number) => {
     try {
-      const response = await api.get(`/api/initiative`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get(`/initiative/${id}`);
 
       return response;
     } catch (error) {
-      console.error("Erro ao obter iniciativas:", error);
+      console.error(`Erro ao obter a iniciativa:`, error);
       throw error;
     }
   },
+
+  createLike: async (id:number) => {
+    try {
+      const response = await api.post(`/likes/${id}`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  },
+
+  deleteLike: async (id:number) => {
+    try {
+      const response = await api.delete(`/likes/${id}`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao criar curtida:`, error);
+      throw error;
+    }
+  },
+
+  getUserLikes: async () => {
+    try {
+      const response = await api.get(`/likes/user`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao obter curtidas do usuário:`, error);
+      throw error;
+    }
+  },
+
+  getAllLikes: async () => {
+    try {
+      const response = await api.get(`/likes`);
+
+      return response;
+    } catch (error) {
+      console.error(`Erro ao obter curtidas das iniciativas:`, error);
+      throw error;
+    }
+  }
+
+  
 
 });

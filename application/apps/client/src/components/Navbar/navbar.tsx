@@ -7,8 +7,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { AuthContext } from '../../contexts/auth/AuthContext';
 import { useContext } from 'react';
+import * as styled from './styles';
 import { useNavigate } from 'react-router-dom';
-import * as styled from './styles'
 
 export const NavBar = () => {
 
@@ -17,7 +17,6 @@ export const NavBar = () => {
 
   return (
     <>
-      
 	  {['xl'].map((expand) => (
         <styled.NavBar key={expand} expand={expand} className=" ">
           <Container fluid>
@@ -46,22 +45,19 @@ export const NavBar = () => {
                   <Nav.Link href="/home">Início</Nav.Link>
                   <Nav.Link href="/about">Sobre</Nav.Link>
                   <Nav.Link href="/contact">Contatos</Nav.Link>
-                  <Nav.Link href="/UserPage">Perfil</Nav.Link>
+                  <Nav.Link onClick={()=>{return navigate("/UserPage")}}>Perfil</Nav.Link>
 				 
                   <NavDropdown
                     title="Mais"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-					          {/* Se o usuário extiver logado, permita ele acessar o recurso */}
-                    {auth?.user &&  <NavDropdown.Item href="/UserPage">Criar Iniciativa</NavDropdown.Item>}
-                    {!auth?.user &&  <NavDropdown.Item href="/login">Criar Iniciativa</NavDropdown.Item>}
-                    <NavDropdown.Item href="#action4">
-                      Another action
-                    </NavDropdown.Item>
+
+               
+                  <NavDropdown.Item onClick={()=>{return navigate("/InitiativeForm")}}>Criar Iniciativa</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/">
-                    {auth?.user && <div style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={auth.signOut}>Sair</div>}
-                    {!auth?.user && <a href='/login'  style={{textDecoration: 'none', color: 'none'}}>Entrar</a>}
+                    {auth?.authenticated && <div style={{border: 'none' , color: 'red', backgroundColor: 'rgb(255, 255, 255, 0.7)'}} onClick={auth.logOut}>Sair</div>}
+                    {!auth?.authenticated && <a href='/login'  style={{textDecoration: 'none', color: 'none'}}>Entrar</a>}
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
