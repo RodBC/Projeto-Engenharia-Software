@@ -3,14 +3,14 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://helpcifeapi.onrender.com/api",
 });
 
 export const useApi = () => ({
 
   signIn: async (email: string, password: string) => {
     try {
-      const response = await api.post("/api/auth/sign-in", {
+      const response = await api.post("/auth/sign-in", {
         email,
         password,
       });
@@ -25,7 +25,7 @@ export const useApi = () => ({
 
   signUp: async (email: string, password: string, name: string) => {
     try {
-      const response = await api.post("/api/auth/sign-up", {
+      const response = await api.post("/auth/sign-up", {
         email,
         password,
         name,
@@ -40,7 +40,7 @@ export const useApi = () => ({
 
   logOut: async () => {
     try {
-      const response = await api.post("/api/auth/logout");
+      const response = await api.post("/auth/logout");
       if (response.status === 200){
 
       }
@@ -54,7 +54,7 @@ export const useApi = () => ({
 
   getAllInitiatives: async () => {
     try {
-      const response = await api.get(`/api/initiative`);
+      const response = await api.get(`/initiative`);
 
       return response;
     } catch (error) {
@@ -66,7 +66,7 @@ export const useApi = () => ({
 
   updateUser: async (imgUrl:string, bannerUrl:string, description:string) => {
     try {
-      const response = await api.put(`/api/user/update`, {
+      const response = await api.put(`/user/update`, {
         imgUrl,
         bannerUrl,
         description,
@@ -81,7 +81,7 @@ export const useApi = () => ({
 
   getUser: async (id:number) => {
     try {
-      const response = await api.get(`api/user/?userId=${id}`);
+      const response = await api.get(`/user/?userId=${id}`);
       console.log(response.data.id)
       return response;
     } catch (error) {
@@ -100,7 +100,7 @@ export const useApi = () => ({
     socials: string | null,
   ) => {
     try {
-      const response = await api.post(`/api/initiative`,
+      const response = await api.post(`/initiative`,
       { name, description, neighborhood, icon, images, socials },);
 
       return response;
@@ -112,7 +112,7 @@ export const useApi = () => ({
 
   getOneInitiative: async (id:number) => {
     try {
-      const response = await api.get(`/api/initiative/${id}`);
+      const response = await api.get(`/initiative/${id}`);
 
       return response;
     } catch (error) {
@@ -123,7 +123,7 @@ export const useApi = () => ({
 
   createLike: async (id:number) => {
     try {
-      const response = await api.post(`/api/likes/${id}`);
+      const response = await api.post(`/likes/${id}`);
 
       return response;
     } catch (error) {
@@ -134,7 +134,7 @@ export const useApi = () => ({
 
   deleteLike: async (id:number) => {
     try {
-      const response = await api.delete(`/api/likes/${id}`);
+      const response = await api.delete(`/likes/${id}`);
 
       return response;
     } catch (error) {
@@ -145,7 +145,7 @@ export const useApi = () => ({
 
   getUserLikes: async () => {
     try {
-      const response = await api.get(`/api/likes/user`);
+      const response = await api.get(`/likes/user`);
 
       return response;
     } catch (error) {
@@ -156,7 +156,7 @@ export const useApi = () => ({
 
   getAllLikes: async () => {
     try {
-      const response = await api.get(`/api/likes`);
+      const response = await api.get(`/likes`);
 
       return response;
     } catch (error) {

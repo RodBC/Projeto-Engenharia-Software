@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./TestCard.css";
 import "../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { useMediaQuery } from "react-responsive";
+
 
 export const TestCard = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -54,11 +56,13 @@ export const TestCard = () => {
     fetchData();
   }, []);
 
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: isSmallScreen ? 2 : 5,
     slidesToScroll: 1,
   };
 
