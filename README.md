@@ -39,10 +39,17 @@ Nosso aplicativo é desenvolvido seguindo dois princípios de design principais:
 e a factorização das funções no lado do back-end.
 ```
 ## Deploy
+* Backend -> Render
+* FrontEnd -> Vercel
+  
 Através do Turbo, executamos o comando "turbo run build" para facilitar os testes de implantação.
 
+## Serviços utilizados
+* Banco de dados -> Render
+* Armazenamento de imagens -> Firebase
+
 ## Construido com:
-  - React.ts, Nest.ts e Postgres.
+  - React.ts, Nest.ts, Postgres, typeORM, jest e styled components.
   - MIT license
 
 ## Contribuindo
@@ -61,16 +68,13 @@ featureSendoDesenvolvida-NomeDoProjeto
   <img src="https://github.com/MatheusMalta002.png" style="width: 100px; height: 100px;" />
   <img src="https://github.com/IanFelipe215.png" style="width: 100px; height: 100px;" />
 </div>
- 
 
 
+## Licença
 
-## License
+Este projeto está licenciado sob a [Licença MIT 1.0 Universal](LICENSE.md).
 
-MIT 1.0 Universal LICENSE.md
-
-## Acknowledgments
-
-  - Hat tip to anyone whose code is used
-  - We're aiming to help the people in need at recife and, futurely, at Brazil as a whole!
+## Agradecimentos
+Agradecemos a todos cujo código foi utilizado.
+Nosso objetivo é ajudar as pessoas necessitadas em Recife e, no futuro, em todo o Brasil!
 
