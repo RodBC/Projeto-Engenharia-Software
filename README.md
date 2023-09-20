@@ -4,8 +4,6 @@ A iniciativa Helpcife é uma plataforma para divulgação de iniciativas de cari
 o apoio a causas sociais e organizações beneficentes. Nossa plataforma online serve como um hub centralizado para
 conectar indivíduos, empresas e organizações com iniciativas de caridade em Recife. 
 
-# Tecnologias utilizadas:
-
 
 # Começando
 Nossa aplicação utiliza o Turbo.js para unificar tanto o front-end quanto o back-end em um único repositório, portanto, 
