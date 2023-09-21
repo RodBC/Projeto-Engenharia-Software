@@ -38,13 +38,14 @@ e a factorização das funções no lado do back-end.
 ```
 ## Deploy
 * Backend -> Render
-* FrontEnd -> Vercel
+* FrontEnd -> Vercel (link: https://helpcife-qm1h65xlc-matheusmalta002.vercel.app/)
   
 Através do Turbo, executamos o comando "turbo run build" para facilitar os testes de implantação.
 
 ## Serviços utilizados
 * Banco de dados -> Render
 * Armazenamento de imagens -> Firebase
+* documentação da API -> Swagger (link : https://helpcifeapi.onrender.com/api)
 
 ## Construido com:
   - React.ts, Nest.ts, Postgres, typeORM, jest e styled components.
