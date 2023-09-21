@@ -19,7 +19,6 @@ Para executar nossa aplicação na sua máquina, você pprecisa apenas do node.
 npm run install
 turbo run dev
 ```
-
 ## Rodando os testes
 ```bash
 jest run tests
@@ -41,6 +40,9 @@ e a factorização das funções no lado do back-end.
 * FrontEnd -> Vercel (link: https://helpcife-qm1h65xlc-matheusmalta002.vercel.app/)
   
 Através do Turbo, executamos o comando "turbo run build" para facilitar os testes de implantação.
+
+## Vídeo demonstração da aplicação funcionando
+* https://drive.google.com/file/d/1P4KQc8IyHZ2lA2AAzjggD7oW8zPdyEZq/view?usp=drive_link
 
 ## Serviços utilizados
 * Banco de dados -> Render
